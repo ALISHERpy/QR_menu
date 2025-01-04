@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <title>Doppi Milliy Taomlar Menusi</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
+        <a class="navbar-brand" href="{% url 'meal:products' %}"><img src="{% static 'img/logo.png' %}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+{#                <li class="nav-item active"><a class="nav-link" href="./index.html">Welcome<span#}
+{#                            class="sr-only">(current)</span></a></li>#}
+{#                <li class="nav-item"><a class="nav-link" href="./index.html#menu">Today's Menu</a></li>#}
+{#                <li class="nav-item"><a class="nav-link" href="./login.html">Split Page</a></li>#}
+                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/alisher_py/">Instagram</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="block hero1 my-auto" style="background-image:url({% static 'background/hero1.jpg' %});">
+        <div class="container-fluid text-center">
+            <h1 class="display-2 text-white">Doppi Milliy Taomlar</h1>
+            <p class="lead text-white">Nimadur yozsa boladi bu yirga!</p>
+            <a href="#menu" class="btn-text lead d-inline-block text-white border-top border-bottom mt-4 pt-1 pb-1">Bugungi Menu bilan tanishing</a>
+        </div>
+    </div>
+
+    <div class="maincontent">
+        <div class="container">
+            <section id="menu">
+                <div class="block menu1">
+
+                    <!-- Start Menu -->
+                    <div class="buttons-container">
+                        {% for category in categories %}
+                        <a href="{% url 'meal:products_by_category' category.slug %}"
+                            class="button {% if category == current_category %}button--is-active{% endif %}"
+                            data-target="menu{{ category.id }}">
+                            {{ category.name }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                    <!-- End Menu -->
+
+                    <!-- Start Product List -->
+                    <div class="menu menu--is-visible" id="productMenu">
+                        {% for product in products %}
+                        <div class="item row align-items-center">
+                            {% if product.image %}
+                            <div class="col-sm-3 pr-5">
+                                <img class="product-img" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </div>
+                            {% endif %}
+                            <div class="details {% if product.image %}col-sm-9{% else %}col-sm-12{% endif %}">
+                                <div class="item__header">
+                                    <h3 class="item__title">{{ product.title }}</h3>
+                                    <span class="item__dots"></span>
+                                    <span class="item__price">{{ product.price }} sum</span>
+                                </div>
+                                <p class="item__description">{{ product.description }}</p>
+{#
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- End Product List -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+  {% block content %}
+  <!-- Content goes here -->
+  {% endblock %}
+
+    <footer class="block footer1 footer text-center">
+        <p>Doppi Milliy Taomlari Menusi 2025</p>
+    </footer>
+{#    <footer class="block footer1 footer text-center">#}
+{#        <a href="https://www.instagram.com/alisher_py/"> <p>Doppi Milliy Taomlari Menusi 2025</p></a>#}
+{#    </footer>#}
+
+
+
+</body>
+
+</html>
