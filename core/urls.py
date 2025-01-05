@@ -8,6 +8,6 @@ from django.conf.urls.static import static
 # handler404 = 'meal.views.custom_404_view'
 
 urlpatterns = [
-    path("doppi/", admin.site.urls),
+    path("xadmin/", admin.site.urls),
     path('goods/', include('meal.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

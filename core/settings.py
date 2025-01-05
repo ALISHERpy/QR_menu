@@ -138,3 +138,73 @@ STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = str(BASE_DIR.joinpath("media"))
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+CORS_ALLOWED_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOWED_ORIGINS = [
+#     'https://web-production-8508.up.railway.app',
+#     'https://yourcustomdomain.com'
+# ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-8508.up.railway.app',
+    'https://yourcustomdomain.com'
+]
+
+
+
+####################################deploy settings##################################
+# ALLOWED_HOSTS = [
+#     'web-production-8508.up.railway.app',
+#     'yourcustomdomain.com'
+# ]
+# CORS_ALLOWED_ORIGINS = [
+#     'https://web-production-8508.up.railway.app',
+#     'https://yourcustomdomain.com'
+# ]
+#
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
+#
+# CORS_ALLOWED_HEADERS = [
+#     'accept',
+#     'accept-encoding',
+#     'authorization',
+#     'content-type',
+#     'dnt',
+#     'origin',
+#     'user-agent',
+#     'x-csrftoken',
+#     'x-requested-with',
+# ]
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://web-production-8508.up.railway.app',
+#     'https://yourcustomdomain.com'
+# ]
+
+####################################deploy settings##################################

@@ -22,7 +22,7 @@ class Category(models.Model):
 
 class Meal(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='meals')
     image = models.ImageField(upload_to='meals', blank=True,default='meals/default.jpg')
