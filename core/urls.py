@@ -9,5 +9,5 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("xadmin/", admin.site.urls),
-    path('goods/', include('meal.urls')),
+    path('', include('meal.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
