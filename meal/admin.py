@@ -12,6 +12,7 @@ class MealAdmin(admin.ModelAdmin):
     # Default ordering of objects in the list view
     ordering = ['-created_at']
     # Add custom JavaScript file
+    list_per_page = 30
     class Media:
         js = ('js/drop_paste.js',)  # This is for the image paste/drop functionality
 # Register the model with the custom admin configuration
