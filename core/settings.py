@@ -170,6 +170,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://yourcustomdomain.com'
 ]
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB (adjust as needed)
+
 
 
 ####################################deploy settings##################################
