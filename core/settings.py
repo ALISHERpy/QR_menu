@@ -167,6 +167,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 # ]
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-8508.up.railway.app',
+    'https://web-production-bbecf.up.railway.app/',
     'http://doppi-family-garden.uz/'
     'https://doppi-family-garden.uz/'
 ]
