@@ -8,31 +8,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script src="{% static 'js/jquery.min.js' %}"></script>
-    <title>Qaldirg'och milliy toamlar</title>
+    <title>Digital menu</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
-        <a class="navbar-brand" href="{% url 'meal:products' %}"><img src="{% static 'img/3.png' %}"></a>
+{#        <a class="navbar-brand" href="{% url 'meal:meal-list' uid %}"><img src="{{ restaurant.brand_logo.url }}"></a>#}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-{#                <li class="nav-item active"><a class="nav-link" href="./index.html">Welcome<span#}
-{#                            class="sr-only">(current)</span></a></li>#}
-{#                <li class="nav-item"><a class="nav-link" href="./index.html#menu">Today's Menu</a></li>#}
-{#                <li class="nav-item"><a class="nav-link" href="./login.html">Split Page</a></li>#}
-                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/alisher_py">Instagram</a></li>
+              <li class="nav-item">
+    <a class="nav-link" href="{% if restaurant.insta_link %}{{ restaurant.insta_link }}{% else %}https://www.instagram.com/alisher_py{% endif %}">
+        Instagram
+    </a>
+</li>
+
             </ul>
         </div>
     </nav>
 {#    ###########################}
 
-    <div class="block hero1 my-auto" style="background-image:url({% static 'background/37.jpg' %});">
+    <div class="block hero1 my-auto" style="background-image:url({{ restaurant.background_image.url }});">
         <div class="container-fluid text-center">
-             <img src="{% static 'background/2.png' %}" alt="Doppi Family Garden" class="img-fluid" style="max-width: 300px;">
+             <img src="{{ restaurant.brand_logo.url }}" alt="Online QR menu" class="img-fluid" style="max-width: 300px;">
 {#            <h1 class="display-2 text-white">Doppi family garden</h1>#}
             <br>
 {#            <p class="lead text-white">Xush kelibsiz !</p>#}
@@ -49,7 +50,7 @@
                     <!-- Start Menu -->
                     <div class="buttons-container">
                         {% for category in categories %}
-                        <a href="{% url 'meal:products_by_category' category.slug %}"
+                        <a href="{% url 'meal:meal-list-category' uid category.slug %}"
                             class="button {% if category == current_category %}button--is-active{% endif %}"
                             data-target="menu{{ category.id }}">
                             {{ category.name }}

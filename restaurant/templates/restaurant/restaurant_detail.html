@@ -7,15 +7,17 @@
     <title>{{ restaurant.name }}</title>
 </head>
 <body>
-    <h1>{{ restaurant.name }}</h1>
-    <p><strong>Location:</strong> {{ restaurant.location }}</p>
-    <p><strong>Contact:</strong> {{ restaurant.contact_number }}</p>
-    <p><strong>Description:</strong> {{ restaurant.description }}</p>
 
-    {% if restaurant.image %}
-        <img src="{{ restaurant.image.url }}" alt="{{ restaurant.name }}">
+    <h1>{{ restaurant.name }}</h1>
+    <p><strong>Description:</strong> {{ restaurant.description }}</p>
+<a href="{% url 'meal:meal-list' restaurant.uid %}">Online menu</a>
+    <br>
+    <a href="{{ restaurant.insta_link }}"><strong>insta_link:</strong></a>
+    <br>
+    {% if restaurant.background_image %}
+        <img src="{{ restaurant.background_image.url }}" alt="{{ restaurant.name }}">
     {% endif %}
 
-    <a href="{% url 'restaurant_list' %}">Back to list</a>
+
 </body>
 </html>

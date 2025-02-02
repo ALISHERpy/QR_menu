@@ -6,7 +6,6 @@ from django.dispatch import receiver
 from django.utils.safestring import mark_safe
 from restaurant.models import Restaurant
 
-
 class Category(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="categories")  # Link to Restaurant
     slug = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
@@ -41,8 +40,6 @@ class Meal(models.Model):
         if self.image:
             return mark_safe(f'<img src="{self.image.url}" width="50" height="50" />')
         return "No Image"
-
-
 
 
 def delete_old_file(path):

@@ -1,27 +1,26 @@
-from .models import Category, Meal
 from django.shortcuts import render, get_object_or_404
-from django.http import FileResponse, Http404
-import os
-from django.conf import settings
-from django.contrib.admin.views.decorators import staff_member_required
+from .models import Category, Meal
+from restaurant.models import Restaurant
 
-def products_by_category(request, category_slug=None):
-
-    categories = Category.objects.all()
+def products_by_category(request, uid=None, category_slug=None):
+    restaurant=Restaurant.objects.get(uid=uid)
+    categories = Category.objects.filter(restaurant_id=uid)
 
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        products = Meal.objects.filter(category=category)
-    else:
+    elif categories.exists():
         category = categories.first()
-        products = Meal.objects.filter(category=category)
-    products = products.filter(is_available=True)
+
+    if category:
+        products = Meal.objects.filter(category=category, is_available=True)
+    else:
+        products = Meal.objects.filter(is_available=True)
+
     context = {
+        "restaurant":restaurant,
+        "uid":uid,
         'categories': categories,
         'products': products,
         'current_category': category,
     }
     return render(request, 'menu.html', context)
-
-
-
