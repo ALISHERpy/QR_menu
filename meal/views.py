@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 
 def products_by_category(request, category_slug=None):
+
     categories = Category.objects.all()
 
     if category_slug:
@@ -23,15 +24,4 @@ def products_by_category(request, category_slug=None):
     return render(request, 'menu.html', context)
 
 
-def custom_404_view(request, exception):
-    return render(request, '404.html', status=404)
 
-
-
-@staff_member_required  # Restrict access to admin users
-def download_db(request):
-    db_path = settings.DATABASES['default']['NAME']
-    if os.path.exists(db_path):
-        return FileResponse(open(db_path, 'rb'), as_attachment=True, filename=os.path.basename(db_path))
-    else:
-        raise Http404("Database file not found")

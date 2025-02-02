@@ -9,6 +9,13 @@ class MealAdmin(admin.ModelAdmin):
     ordering = ['-created_at']
     list_per_page = 20
 
+    # def get_queryset(self, request):
+    #     queryset = super().get_queryset(request)
+    #     # If the user has an associated restaurant, filter meals by that restaurant
+    #     if request.user.restaurant:
+    #         queryset = queryset.filter(restaurant=request.user.restaurant)
+    #     return queryset
+
     class Media:
         js = ('js/drop_paste.js',)  # This is for the image paste/drop functionality
 admin.site.register(Meal, MealAdmin)
@@ -18,3 +25,4 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'description']
     search_fields = ['name',]
 admin.site.register(Category,CategoryAdmin)
+

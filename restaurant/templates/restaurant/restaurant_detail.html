@@ -1,0 +1,21 @@
+<!-- restaurant/templates/restaurant/restaurant_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name }}</title>
+</head>
+<body>
+    <h1>{{ restaurant.name }}</h1>
+    <p><strong>Location:</strong> {{ restaurant.location }}</p>
+    <p><strong>Contact:</strong> {{ restaurant.contact_number }}</p>
+    <p><strong>Description:</strong> {{ restaurant.description }}</p>
+
+    {% if restaurant.image %}
+        <img src="{{ restaurant.image.url }}" alt="{{ restaurant.name }}">
+    {% endif %}
+
+    <a href="{% url 'restaurant_list' %}">Back to list</a>
+</body>
+</html>

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     # lacal
     'meal',
+    'user',
+    'restaurant',
 ]
 
 MIDDLEWARE = [
@@ -166,15 +168,15 @@ CORS_ORIGIN_ALLOW_ALL = True
 #     'https://yourcustomdomain.com'
 # ]
 CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-8508.up.railway.app',
+
     'https://web-production-bbecf.up.railway.app',
-    'http://doppi-family-garden.uz'
-    'https://doppi-family-garden.uz'
+    'http://doppi-family-garden.uz',
+    'https://doppi-family-garden.uz',
 ]
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB (adjust as needed)
 
-
+AUTH_USER_MODEL='user.User'
 
 ####################################deploy settings##################################
 # ALLOWED_HOSTS = [
