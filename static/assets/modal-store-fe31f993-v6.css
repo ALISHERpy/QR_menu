@@ -1,0 +1,64 @@
+.modal-window-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    contain: strict;
+    color: var(--ik-bg-high-contrast-color);
+    will-change: transform;
+    height: 100%;
+    touch-action: none;
+    background-color: #0000004d;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--ik-modal-z-index);
+    overflow: hidden
+}
+
+.modal-window-page__modal {
+    background-color: #fff;
+    color: #222;
+    border-radius: 10px;
+    box-shadow: 0 0 30px 10px #0003;
+    width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+    will-change: transform
+}
+
+.modal-window-page__modal.v-enter-from,
+.modal-window-page__modal.v-leave-to {
+    transform: scale(1.2);
+    opacity: 0
+}
+
+.modal-window-page__modal.v-enter-to,
+.modal-window-page__modal.v-leave-from {
+    transform: scale(1);
+    opacity: 1
+}
+
+.modal-window-page__modal.v-enter-active,
+.modal-window-page__modal.v-leave-active {
+    transition: transform .3s ease, opacity .3s ease
+}
+
+.modal-window-page__modal__header {
+    padding: 10px;
+    position: absolute
+}
+
+.modal-window-page__modal__content {
+    padding: 60px 20px 40px;
+    text-align: center
+}
+
+.modal-window-page__modal--success .modal-window-page__modal__title {
+    color: green
+}
+
+.modal-window-page__modal--error .modal-window-page__modal__title {
+    color: #ff4500
+}
