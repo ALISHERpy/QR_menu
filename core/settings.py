@@ -178,6 +178,9 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB (adjust as needed)
 
 AUTH_USER_MODEL='user.User'
 
+# bot
+TELEGRAM_BOT_TOKEN = '6873534034:AAFsF_IxGbRAauDkM7M38CvP611YYV8tm-M'
+TELEGRAM_CHAT_ID = '-4770744934'
 ####################################deploy settings##################################
 # ALLOWED_HOSTS = [
 #     'web-production-8508.up.railway.app',

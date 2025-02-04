@@ -25,7 +25,7 @@ class Meal(models.Model):
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='meals')
-    image = models.ImageField(upload_to='meals', blank=True, default='meals/default.jpg')
+    image = models.ImageField(upload_to='meals', blank=True, default='default.jpg')
 
     is_vegetarian = models.BooleanField(default=False)
     is_available = models.BooleanField(default=True)

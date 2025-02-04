@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=200)),
                 ('description', models.TextField(blank=True, null=True)),
                 ('price', models.DecimalField(decimal_places=2, max_digits=8)),
-                ('image', models.ImageField(blank=True, default='meals/default.jpg', upload_to='meals')),
+                ('image', models.ImageField(blank=True, default='default.jpg', upload_to='meals')),
                 ('is_vegetarian', models.BooleanField(default=False)),
                 ('is_available', models.BooleanField(default=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
