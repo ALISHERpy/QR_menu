@@ -59,23 +59,30 @@
 
       <a class="btn-getstarted" href="#hamkor-bolish">{% trans "Hamkor bo'lish" %}</a>
 
+    </div>
+
       {% get_current_language as current_language %}
       {% get_available_languages as available_languages %}
       {% get_language_info_list for available_languages as langs %}
-            <button class="btn badge bg-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{current_language}}
-            </button>
+      <button class="btn badge bg-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    {{current_language|upper}}
+</button>
+{#<button class="btn badge dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: linear-gradient(45deg, #ff5733, #025eff); color: white;">#}
+{#    {{current_language|upper}}#}
+{#</button>#}
+
+{#              <ul class="dropdown-menu">#}
+{#                {% for lang in langs %}#}
+{#                    <li><a class="dropdown-item" href="/{{ lang.code }}">{{ lang.name_local }}</a></li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
             <ul class="dropdown-menu">
-{#            {% for i in langs %}#}
-{#            <li><a class="dropdown-item" href="{{ i.code }}">{{ i.name_local }}</a></li>#}
             <li><a class="dropdown-item" href="/uz-latn">🇺🇿 O‘zbek (Lotin)</a></li>
             <li><a class="dropdown-item" href="/uz-cyrl">🇺🇿 Ўзбек (Кирилл)</a></li>
             <li><a class="dropdown-item" href="/en">🇬🇧 English</a></li>
             <li><a class="dropdown-item" href="/ru">🇷🇺 Русский</a></li>
             <li><a class="dropdown-item" href="/tr">🇹🇷 Türkçe</a></li>
-{#            {% endfor %}#}
             </ul>
-    </div>
   </header>
 
   <main class="main">
