@@ -5,15 +5,19 @@ from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 from django.db.models import Q
 
+def product_detail(request, slug):
+    product = get_object_or_404(Meal, slug=slug, is_available=True)
+    return render(request, 'product_detail.html', {'product': product})
 
 
-@cache_page(60 * 15)
+#
+# @cache_page(60 * 15)
 def products_by_category(request, uid=None, category_slug=None):
-    cache_key = f"menu_{uid}_{category_slug}"
-    cached_data = cache.get(cache_key)
-
-    if cached_data:
-        return cached_data
+    # cache_key = f"menu_{uid}_{category_slug}"
+    # cached_data = cache.get(cache_key)
+    #
+    # if cached_data:
+    #     return cached_data
 
     restaurant = Restaurant.objects.prefetch_related("categories").get(uid=uid)
 
@@ -44,7 +48,6 @@ def products_by_category(request, uid=None, category_slug=None):
         'products': products,
         'current_category': category,
     })
-    cache.set(cache_key, response, 900)
+    # cache.set(cache_key, response, 900)
     return response
-
 

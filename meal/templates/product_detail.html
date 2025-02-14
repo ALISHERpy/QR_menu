@@ -1,16 +1,36 @@
 {% extends 'menu2.html' %}
+{% load static %}
+{% block productdetail %}
+    <div class="page fullscreen">
+        <div class="product-page">
+            <div class="product-page__img">
+                <img src="{{ product.image.url }}" alt="{{ product.title }}">
+            </div>
 
-{% block content %}
-<div class="product-detail">
-    <a href="{% url 'meal:meal-list' uid %}" class="back-button">←</a>
-    <div class="product-detail__img">
-        <img src="{{ product.image.url }}" alt="{{ product.title }}">
+            <div class="product-page__header">
+{#                <div class="product-page__cat-image">#}
+{#                    <img src="{{ product.category.image.url }}" alt="Category" style="height: 40px;">#}
+{#                </div>#}
+
+                <div class="product-page__product-name text-overflow">
+                    {{ product.title }}
+                </div>
+
+                <div class="product-page__product-price no-wrap">
+                    {{ product.price }} sum
+                </div>
+            </div>
+
+            <div class="product-page__product-description">
+                {{ product.description }}
+            </div>
+        </div>
     </div>
-    <div class="product-detail__info">
-        <h1>{{ product.title }}</h1>
-        <p class="product-detail__price">{{ product.price }} £</p>
-        <p class="product-detail__description">{{ product.description }}</p>
-    </div>
-    <button class="add-to-cart">+</button>
-</div>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = "{% url 'meal:meal-list' product.restaurant.uid %}";
+        }, 5000);  // 5 sekunddan keyin menyu sahifasiga qaytadi
+    </script>
+
 {% endblock %}

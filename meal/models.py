@@ -5,6 +5,7 @@ from django.db.models.signals import pre_save, post_delete
 from django.dispatch import receiver
 from django.utils.safestring import mark_safe
 from restaurant.models import Restaurant
+from django.utils.text import slugify
 
 class Category(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="categories")  # Link to Restaurant
@@ -26,8 +27,9 @@ class Category(models.Model):
         return "No Image"
 
 class Meal(models.Model):
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="meals")  # Link to Restaurant
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="meals")
     title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True, null=True,db_index=True)  # ✅ Slug qo'shildi
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='meals')
@@ -38,6 +40,11 @@ class Meal(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title) + "-" + str(uuid.uuid4())[:8]  # ✅ Slug avtoyaratiladi
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title} - {self.restaurant.name}"

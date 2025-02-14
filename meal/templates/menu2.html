@@ -71,9 +71,14 @@
                                     <div class="menu-product__item__toolbar">
                                         <div style="flex-grow:1;"></div>
                                     </div>
+                            <a href="{% url 'meal:product-detail' product.slug %}">
+
                                     <div class="menu-product__item__img">
                                         <img class="menu-product__item__img__full" src="{{ product.image.url }}" alt="Item image">
                                     </div>
+                            </a>
+
+
                                     <div class="menu-product__item__top-block">
                                         <div class="menu-product__item__name text-overflow">{{ product.title }}</div>
                                         <div class="menu-product__item__price no-wrap">{{ product.price }}</div>
@@ -86,8 +91,11 @@
             </div>
         </div>
     </div>
-    <meta name="csrf-token" content="{{ csrf_token }}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{% static 'menu2/assets/script.js' %}"></script>
+{#    <meta name="csrf-token" content="{{ csrf_token }}">#}
+{#    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>#}
+{#    <script src="{% static 'menu2/assets/script.js' %}"></script>#}
 </body>
+
+{% block productdetail %}
+{% endblock %}
 </html>
