@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -36,7 +38,7 @@
 
                         <div class="col-lg-10 col-12">
                             <div class="section-title-wrap mb-5">
-                                <h4 class="section-title">Restoran haqida to'liq malumot</h4>
+                                <h4 class="section-title">{% trans "Restoran haqida to'liq malumot" %}</h4>
                             </div>
 
                             <div class="row">
@@ -55,7 +57,7 @@
                                             <small class="me-4">
                                                 <a href={{ restaurant.short_video }}>
                                                     <i class="bi-play"></i>
-                                                    Video Link
+                                                    {% trans 'Video Link' %}
                                                 </a>
                                             </small>
 
@@ -82,7 +84,7 @@
 
                                                 <p>
                                                     QR-code menu
-                                                    <strong>ko'rish</strong>
+                                                    <strong>{% trans "ko'rish" %}</strong>
                                                 </p>
                                             </div>
                                         </a>

@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,18 +46,35 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Bosh sahifa<br></a></li>
-          <li><a href="#about">D-Menu haqida</a></li>
-          <li><a href="#namuna">Namunalar</a></li>
-          <li><a href="{% url 'restaurant:restaurant_list' %}">Mizojlarimiz</a></li>
+          <li><a href="#hero" class="active">{% trans "Bosh sahifa" %}<br></a></li>
+          <li><a href="#about">{% trans 'D-Menu haqida' %}</a></li>
+          <li><a href="#namuna">{% trans 'Namunalar' %}</a></li>
+          <li><a href="{% url 'restaurant:restaurant_list' %}">{% trans 'Mizojlarimiz' %}</a></li>
 
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">{% trans 'Contact' %}</a></li>
         </ul>
+
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="#hamkor-bolish">Hamkor bo'lish</a>
+      <a class="btn-getstarted" href="#hamkor-bolish">{% trans "Hamkor bo'lish" %}</a>
 
+      {% get_current_language as current_language %}
+      {% get_available_languages as available_languages %}
+      {% get_language_info_list for available_languages as langs %}
+            <button class="btn badge bg-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{current_language}}
+            </button>
+            <ul class="dropdown-menu">
+{#            {% for i in langs %}#}
+{#            <li><a class="dropdown-item" href="{{ i.code }}">{{ i.name_local }}</a></li>#}
+            <li><a class="dropdown-item" href="/uz-latn">🇺🇿 O‘zbek (Lotin)</a></li>
+            <li><a class="dropdown-item" href="/uz-cyrl">🇺🇿 Ўзбек (Кирилл)</a></li>
+            <li><a class="dropdown-item" href="/en">🇬🇧 English</a></li>
+            <li><a class="dropdown-item" href="/ru">🇷🇺 Русский</a></li>
+            <li><a class="dropdown-item" href="/tr">🇹🇷 Türkçe</a></li>
+{#            {% endfor %}#}
+            </ul>
     </div>
   </header>
 
@@ -68,11 +86,12 @@
       <div class="container">
         <div class="row gy-4 justify-content-center justify-content-lg-between">
           <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h1 data-aos="fade-up">Assalom alaykum<br>Xush kelibsiz !</h1>
-            <p data-aos="fade-up" data-aos-delay="100">Biz bilan Restaraninggizga Zamonaviy muhitni yarating.</p>
+            <h1 data-aos="fade-up"> {% trans "Assalom alaykum" %} <br>
+              {% trans "Xush kelibsiz" %} !</h1>
+            <p data-aos="fade-up" data-aos-delay="100">{% trans "Biz bilan Restaraninggizga Zamonaviy muhitni yarating." %}</p>
             <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-              <a href="#hamkor-bolish" class="btn-get-started">Hamkor bo'lish</a>
-              <a href="https://www.youtube.com/watch?v=wIJGcrfH3BA" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Qisqa Video</span></a>
+              <a href="#hamkor-bolish" class="btn-get-started">{% trans "Hamkor bo'lish" %}</a>
+              <a href="https://www.youtube.com/watch?v=wIJGcrfH3BA" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>{% trans "Qisqa Video" %}</span></a>
             </div>
           </div>
           <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
@@ -88,8 +107,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Service haqida qisqacha<br></h2>
-        <p><span>Digital menu</span> <span class="description-title">qanday ishlaydi ?</span></p>
+        <h2>{% trans "Service haqida qisqacha" %}<br></h2>
+        <p><span>Digital menu</span> <span class="description-title">{% trans "qanday ishlaydi ?" %}</span></p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -98,24 +117,26 @@
           <div class="col-lg-5" data-aos="fade-up" data-aos-delay="250">
             <div class="content ps-0 ps-lg-5">
               <p>
-                <strong>Digital Menu</strong> – bu zamonaviy restoran va kafe egalari uchun innovatsion yechim. U QR-kod yordamida mehmonlarga menyuni tezkor va qulay tarzda ko‘rish imkonini beradi.
+                <strong>Digital Menu</strong> – {% trans "bu zamonaviy restoran va kafe egalari uchun innovatsion yechim. U QR-kod yordamida mehmonlarga menyuni tezkor va qulay tarzda ko‘rish imkonini beradi." %}
               </p>
-              <ul>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Mijoz QR-kodni telefon kamerasidan yoki maxsus ilovadan skaner qiladi..</span></li>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Raqamli menyu telefon ekranida ochiladi, mijoz barcha taomlar va ichimliklar bilan tanishishi mumkin.</span></li>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Agar istasanggiz bevosita menyu orqali buyurtma berish imkoniyatini ham taqdim etadi...</span></li>
-              </ul>
-              <p>
-              <strong>Digital Menu qanday muammolarni hal qiladi?</strong>
-                  <br>
-✅ Sanitariya va gigiyena muammolarini bartaraf etadi – Qog‘oz menyulardan farqli o‘laroq, mijozlar bir-biri bilan aloqada bo‘lmaydi.
-                  <br>
-✅ Menyuni yangilash muammosini yo‘q qiladi – Endi menyu o‘zgarishlari uchun qog‘oz chiqarish shart emas, barchasi raqamli tizim orqali boshqariladi.
-                  <br>
-✅ Xodimlarning vaqtini tejaydi – Ofitsiantlar mijozlarga menyu olib kelish o‘rniga xizmat ko‘rsatishga e’tibor qaratadi.
-                  <br>
-✅ Tez va qulay foydalanish – Har qanday telefon yoki planshetdan osongina foydalanish mumkin.
-              </p>
+   <ul>
+    <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Mijoz QR-kodni telefon kamerasidan yoki maxsus ilovadan skaner qiladi." %}</span></li>
+    <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Raqamli menyu telefon ekranida ochiladi, mijoz barcha taomlar va ichimliklar bilan tanishishi mumkin." %}</span></li>
+    <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Agar istasangiz, bevosita menyu orqali buyurtma berish imkoniyatini ham taqdim etadi." %}</span></li>
+</ul>
+
+<p>
+    <strong>{% trans "Digital Menu qanday muammolarni hal qiladi?" %}</strong>
+    <br>
+    ✅ {% trans "Sanitariya va gigiyena muammolarini bartaraf etadi – Qog‘oz menyulardan farqli o‘laroq, mijozlar bir-biri bilan aloqada bo‘lmaydi." %}
+    <br>
+    ✅ {% trans "Menyuni yangilash muammosini yo‘q qiladi – Endi menyu o‘zgarishlari uchun qog‘oz chiqarish shart emas, barchasi raqamli tizim orqali boshqariladi." %}
+    <br>
+    ✅ {% trans "Xodimlarning vaqtini tejaydi – Ofitsiantlar mijozlarga menyu olib kelish o‘rniga xizmat ko‘rsatishga e’tibor qaratadi." %}
+    <br>
+    ✅ {% trans "Tez va qulay foydalanish – Har qanday telefon yoki planshetdan osongina foydalanish mumkin." %}
+</p>
+
 
               <div class="position-relative mt-4">
                 <img src="{% static 'user_static/img/menu.jpg' %}" class="img-fluid" alt="">
@@ -164,33 +185,33 @@
 
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url({% static 'user_static/img/n1.jpg' %})">
 {#              <h3>Mini Qr code</h3>#}
-              <div class="price align-self-start">Mini</div>
+              <div class="price align-self-start">{%  trans "Mini" %}</div>
               <p class="description">
-                bu kichik hajmli qr-kodlarni stol ustiga yopishtirib qo'yishinggiz mumkin.
+                {% trans "bu kichik hajmli qr-kodlarni stol ustiga yopishtirib qo'yishinggiz mumkin." %}
               </p>
             </div><!-- End Event item -->
 
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url({% static 'user_static/img/n2.jpg' %})">
 {#              <h3>Private Parties</h3>#}
-              <div class="price align-self-start">Milliy</div>
+              <div class="price align-self-start">{% translate 'Milliy' %}</div>
               <p class="description">
-                Har bir restoran kelib chiqishiga moslangan milliy yoki yevropa styleda qilingn design .
+                {% translate 'Har bir restoran kelib chiqishiga moslangan milliy yoki yevropa styleda qilingn design .' %}
               </p>
             </div><!-- End Event item -->
 
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url({% static 'user_static/img/n3.jpg' %})">
 {#              <h3>Birthday Parties</h3>#}
-              <div class="price align-self-start">Main code</div>
+              <div class="price align-self-start">{% trans 'Code Main' %}</div>
               <p class="description">
-                Bu design asosiy e'tobor qr-kodga qarailadi,restoran brand-logo esi orqa o'rinda qolib ketadi.
+                {% trans "Bu design asosiy e'tobor qr-kodga qarailadi,restoran brand-logo esi orqa o'rinda qolib ketadi." %}
               </p>
             </div><!-- End Event item -->
 
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url({% static 'user_static/img/n4.jpg' %})">
 {#              <h3>Wedding Parties</h3>#}
-              <div class="price align-self-start">Restoran inside</div>
+              <div class="price align-self-start">{% trans "Restoran inside" %}</div>
               <p class="description">
-                Restaron ichki qismidan rasm olib,uni qr-kod bilan birlashtirish mumkin.
+                {% trans "Restaron ichki qismidan rasm olib,uni qr-kod bilan birlashtirish mumkin." %}
               </p>
             </div><!-- End Event item -->
 
@@ -206,9 +227,9 @@
     <section id="hamkor-bolish" class="book-a-table section">
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Ariza qoldirish </h2>
+        <h2>{% trans "Ariza qoldirish " %}</h2>
         <p>
-            Quyida malumotlarni kiriting va biz o'zimiz sizga bog'lanamiz </p>
+            {% trans "Quyida malumotlarni kiriting va biz o'zimiz sizga bog'lanamiz " %}</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -239,9 +260,9 @@
   </div>
   <div class="text-center mt-3">
     <div class="loading">Loading</div>
-    <div class="sent-message">Your request has been sent successfully!</div>
+    <div class="sent-message">{% trans 'Your request has been sent successfully!' %}</div>
     <div class="error-message"></div>
-    <button type="submit" id="submit-button">Yuborish</button>
+    <button type="submit" id="submit-button">{% trans 'Yuborish' %}</button>
   </div>
 </form>
 
@@ -263,7 +284,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
+        <h2>{% trans 'Contact' %}</h2>
 {#        <p><span>Quyida bizning manzilimizni ko'rishingiz mumkin</span></p>#}
       </div><!-- End Section Title -->
 
@@ -280,7 +301,7 @@
             <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
               <i class="icon bi bi-geo-alt flex-shrink-0"></i>
               <div>
-                <h3>Address</h3>
+                <h3>{% trans 'Address' %}</h3>
                 <p>Olimlar 4, 100164, Tashkent, Uzbekistan</p>
               </div>
             </div>
@@ -290,7 +311,7 @@
             <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="300">
               <i class="icon bi bi-telephone flex-shrink-0"></i>
               <div>
-                <h3>Call Us</h3>
+                <h3>{% trans 'Call Us' %}</h3>
                 <p>+998 94 871 21 02</p>
               </div>
             </div>
