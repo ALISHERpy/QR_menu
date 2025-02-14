@@ -7,7 +7,7 @@ from django.db.models import Q
 
 
 
-# @cache_page(60 * 15)  # 30 daqiqa cache
+@cache_page(60 * 15)
 def products_by_category(request, uid=None, category_slug=None):
     cache_key = f"menu_{uid}_{category_slug}"
     cached_data = cache.get(cache_key)
@@ -16,8 +16,11 @@ def products_by_category(request, uid=None, category_slug=None):
         return cached_data
 
     restaurant = Restaurant.objects.prefetch_related("categories").get(uid=uid)
-    categories = restaurant.categories.filter(parent__isnull=True)
 
+    if restaurant.is_expired():
+        return render(request, 'restaurant_expired.html', {'restaurant': restaurant})
+
+    categories = restaurant.categories.filter(parent__isnull=True)
     category = None
     products = Meal.objects.filter(restaurant=restaurant, is_available=True)
 
@@ -41,7 +44,7 @@ def products_by_category(request, uid=None, category_slug=None):
         'products': products,
         'current_category': category,
     })
-    # cache.set(cache_key, response, 900)  # 30 daqiqa cache
+    cache.set(cache_key, response, 900)
     return response
 
 

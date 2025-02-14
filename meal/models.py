@@ -8,7 +8,7 @@ from restaurant.models import Restaurant
 
 class Category(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="categories")  # Link to Restaurant
-    slug = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    slug = models.UUIDField(default=uuid.uuid4, editable=False, unique=True,db_index=True)
     name = models.CharField(max_length=32)
     image = models.ImageField(upload_to='category',blank=True,null=True)
     parent = models.ForeignKey(
