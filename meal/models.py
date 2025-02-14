@@ -9,15 +9,21 @@ from restaurant.models import Restaurant
 class Category(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="categories")  # Link to Restaurant
     slug = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    name = models.CharField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
-
+    name = models.CharField(max_length=32)
+    image = models.ImageField(upload_to='category',blank=True,null=True)
+    parent = models.ForeignKey(
+        "self", on_delete=models.CASCADE, related_name="subcategories",
+        null=True, blank=True
+    )
     class Meta:
         verbose_name_plural = "Categories"
 
     def __str__(self):
-        return f"{self.name} - {self.restaurant.name}"
-
+        return f"{self.name} (Subcategory of {self.parent.name})" if self.parent else self.name
+    def its_image(self):
+        if self.image:
+            return mark_safe(f'<img src="{self.image.url}" width="50" height="50" />')
+        return "No Image"
 
 class Meal(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="meals")  # Link to Restaurant

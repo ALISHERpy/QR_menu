@@ -37,17 +37,20 @@ class MealAdmin(admin.ModelAdmin):
         return queryset
 
     class Media:
-        js = ('js/drop_paste.js',)  # This is for the image paste/drop functionality
+        js = ('others/drop_paste.js',)  # This is for the image paste/drop functionality
 admin.site.register(Meal, MealAdmin)
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description']
+    list_display = ['name', 'its_image', 'parent']
     search_fields = ['name',]
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
         if request.user.restaurant:
             queryset = queryset.filter(restaurant=request.user.restaurant)
         return queryset
+    class Media:
+        js = ('others/drop_paste.js',)
+
 admin.site.register(Category,CategoryAdmin)
 

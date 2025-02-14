@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'menu2/assets/saveBasket-d95f81b5-v6.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'menu2/assets/MenuPage-f2dda5a0-v6.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'menu2/assets/styles.css' %}">
+    <title>Digital menu</title>
+</head>
+<body>
+    <div id="app">
+        <div id="menu-page" class="page">
+            <header id="sticky-header">
+                <div class="header">
+                    <div style="flex-grow:1;position:relative;height:45px;">
+                        <div style="display:flex;gap:10px;align-items:center;position:absolute;left:0;right:0;top:0;bottom:0;overflow-x:auto;">
+                            <img class="header__logo" src="{{ restaurant.brand_logo.url }}" alt="rasmi">
+                            <div class="header__restaurant-name">
+                                <h1>{{ restaurant.name }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="categories-section categories-section--medium-photo">
+                    <div class="categories-section__container">
+                        {% for category in categories %}
+                            <div class="menu-category {% if current_category and category.id == current_category.id %}menu-category--active{% endif %}"
+                                 data-category-id="{{ category.id }}" data-long-press-delay="1000">
+                                <div class="menu-category__highlight" id="menu-category__highlight"></div>
+                                {% if category.image %}
+                                    <div class="menu-category__img">
+                                        <a href="{% url 'meal:meal-list-category' uid category.slug %}">
+                                            <img src="{{ category.image.url }}" alt="{{ category.name }}">
+                                        </a>
+                                    </div>
+                                {% endif %}
+                                <div class="menu-category__name no-wrap">
+                                    <div>
+                                        <a href="{% url 'meal:meal-list-category' uid category.slug %}">
+                                            {{ category.name }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </header>
+            <div class="menu-content--categories-medium-photo menu-content">
+                <section class="subcategories-section">
+                    {% if current_category.subcategories.all %}
+                        <div class="subcategories-section__item--active subcategories-section__item no-wrap no-user-select">
+                            <a href="{% url 'meal:meal-list-category' uid current_category.slug %}">All</a>
+                        </div>
+                        {% for subcategory in current_category.subcategories.all %}
+                            <div class="subcategories-section__item text-overflow">
+                                <a href="{% url 'meal:meal-list-category' uid subcategory.slug %}" class="no-user-select">
+                                    {{ subcategory.name }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </section>
+                <section class="menu-products-section menu-products-section--grid">
+                    <div class="menu-grid">
+                        {% for product in products %}
+                            <div class="menu-product">
+                                <div class="menu-product__item">
+                                    <div class="menu-product__item__toolbar">
+                                        <div style="flex-grow:1;"></div>
+                                    </div>
+                                    <div class="menu-product__item__img">
+                                        <img class="menu-product__item__img__full" src="{{ product.image.url }}" alt="Item image">
+                                    </div>
+                                    <div class="menu-product__item__top-block">
+                                        <div class="menu-product__item__name text-overflow">{{ product.title }}</div>
+                                        <div class="menu-product__item__price no-wrap">{{ product.price }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'menu2/assets/script.js' %}"></script>
+</body>
+</html>
