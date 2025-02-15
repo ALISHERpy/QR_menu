@@ -162,7 +162,6 @@ AUTH_USER_MODEL='user.User'
 # bot
 TELEGRAM_BOT_TOKEN = '6873534034:AAFsF_IxGbRAauDkM7M38CvP611YYV8tm-M'
 TELEGRAM_CHAT_ID = '-4770744934'
-
 from django.utils.translation import gettext_lazy as _
 
 LANGUAGES = [
