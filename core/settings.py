@@ -144,17 +144,17 @@ CORS_ALLOWED_HEADERS = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    'http://digitalmenu.uz',
+    'https://digitalmenu.uz',
+]
+
 # CORS_ALLOWED_ORIGINS = [
 #     'https://web-production-8508.up.railway.app',
 #     'https://yourcustomdomain.com'
 # ]
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-    'http://doppi-family-garden.uz',
-    'https://doppi-family-garden.uz',
-]
-
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB (adjust as needed)
 
 AUTH_USER_MODEL='user.User'
@@ -178,6 +178,11 @@ USE_I18N = True
 USE_L10N = True
 LOCALE_PATHS = [
     BASE_DIR/'locale/',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://digitalmenu.uz",
+    "https://www.digitalmenu.uz",
 ]
 
 ####################################deploy settings##################################
