@@ -4,430 +4,454 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-{#    ##google seaching engine uchun#}
+    {#    ##google seaching engine uchun#}
     <title>QR Kod orqali Raqamli Menyu | DigitalMenu.uz – Restoranlar uchun</title>
-    <meta name="description" content="Restoran va kafe egalari uchun raqamli menyu xizmati! QR kod yordamida tezkor va gigiyenik buyurtma bering. Menyuni osongina o‘zgartiring va mijozlarga qulaylik yarating.">
-    <meta name="keywords" content="raqamli menyu, QR menyu, restoran menyusi, raqamli restoran, online buyurtma, kafe menyusi, digital menu">
+    <meta name="description"
+          content="Restoran va kafe egalari uchun raqamli menyu xizmati! QR kod yordamida tezkor va gigiyenik buyurtma bering. Menyuni osongina o‘zgartiring va mijozlarga qulaylik yarating.">
+    <meta name="keywords"
+          content="raqamli menyu, QR menyu, restoran menyusi, raqamli restoran, online buyurtma, kafe menyusi, digital menu">
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Restaurant",
+          "name": "DigitalMenu.uz",
+          "url": "https://digitalmenu.uz",
+          "logo": "https://digitalmenu.uz/media/logo.png",
+          "description": "QR kodli menyu xizmati – restoran va kafelar uchun innovatsion yechim.QR code menu.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Tashkent",
+            "addressCountry": "UZ"
+          }
+        }
+    </script>
+  {#    ##google seaching engine uchun#}
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "DigitalMenu.uz",
-  "url": "https://digitalmenu.uz",
-  "logo": "https://digitalmenu.uz/logo.png",
-  "description": "QR kodli menyu xizmati – restoran va kafelar uchun innovatsion yechim.QR code menu.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Tashkent",
-    "addressCountry": "UZ"
-  }
-}
-</script>
-{#    ##google seaching engine uchun#}
+    <!-- Favicons -->
+    <link href="{% static 'user_static/img/qr.jpg' %}" rel="icon">
+    <link href="{% static 'user_static/img/qr.jpg' %}" rel="apple-touch-icon">
 
-  <!-- Favicons -->
-  <link href="{% static 'user_static/img/qr.jpg' %}" rel="icon">
-  <link href="{% static 'user_static/img/qr.jpg' %}" rel="apple-touch-icon">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'user_static/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user_static/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'user_static/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'user_static/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'user_static/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="{% static 'user_static/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'user_static/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href="{% static 'user_static/vendor/aos/aos.css' %}" rel="stylesheet">
-  <link href="{% static 'user_static/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-  <link href="{% static 'user_static/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="{% static 'user_static/css/main.css' %}" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link href="{% static 'user_static/css/main.css' %}" rel="stylesheet">
 
 
 </head>
 
 <body class="index-page">
 
-  <header id="header" class="header d-flex align-items-center sticky-top">
+<header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container position-relative d-flex align-items-center justify-content-between">
 
-      <a href="{% url 'user:homepage' %}" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-{#        <img src="{% static 'user_static/img/qr.jpg' %}" alt="">#}
-        <h1 class="sitename">Digital Menu</h1>
-        <span>.</span>
-      </a>
+        <a href="{% url 'user:homepage' %}" class="logo d-flex align-items-center me-auto me-xl-0">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            {#        <img src="{% static 'user_static/img/qr.jpg' %}" alt="">#}
+            <h1 class="sitename">Digital Menu</h1>
+            <span>.</span>
+        </a>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">{% trans "Bosh sahifa" %}<br></a></li>
-          <li><a href="#about">{% trans 'D-Menu haqida' %}</a></li>
-          <li><a href="#namuna">{% trans 'Namunalar' %}</a></li>
-          <li><a href="{% url 'restaurant:restaurant_list' %}">{% trans 'Mizojlarimiz' %}</a></li>
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <li><a href="#hero" class="active">{% trans "Bosh sahifa" %}<br></a></li>
+                <li><a href="#about">{% trans 'D-Menu haqida' %}</a></li>
+                <li><a href="#namuna">{% trans 'Namunalar' %}</a></li>
+                <li><a href="{% url 'restaurant:restaurant_list' %}">{% trans 'Mizojlarimiz' %}</a></li>
 
-          <li><a href="#contact">{% trans 'Contact' %}</a></li>
-        </ul>
+                <li><a href="#contact">{% trans 'Contact' %}</a></li>
+            </ul>
 
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
 
-      <a class="btn-getstarted" href="#hamkor-bolish">{% trans "Hamkor bo'lish" %}</a>
+        <a class="btn-getstarted" href="#hamkor-bolish">{% trans "Hamkor bo'lish" %}</a>
 
     </div>
 
-      {% get_current_language as current_language %}
-      {% get_available_languages as available_languages %}
-      {% get_language_info_list for available_languages as langs %}
-      <button class="btn badge bg-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    {{current_language|upper}}
-</button>
-{#<button class="btn badge dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: linear-gradient(45deg, #ff5733, #025eff); color: white;">#}
-{#    {{current_language|upper}}#}
-{#</button>#}
+    {% get_current_language as current_language %}
+    {% get_available_languages as available_languages %}
+    {% get_language_info_list for available_languages as langs %}
+    <button class="btn badge bg-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ current_language|upper }}
+    </button>
+    {#<button class="btn badge dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: linear-gradient(45deg, #ff5733, #025eff); color: white;">#}
+    {#    {{current_language|upper}}#}
+    {#</button>#}
 
-{#              <ul class="dropdown-menu">#}
-{#                {% for lang in langs %}#}
-{#                    <li><a class="dropdown-item" href="/{{ lang.code }}">{{ lang.name_local }}</a></li>#}
-{#                {% endfor %}#}
-{#            </ul>#}
-            <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/uz-latn">🇺🇿 O‘zbek (Lotin)</a></li>
-            <li><a class="dropdown-item" href="/uz-cyrl">🇺🇿 Ўзбек (Кирилл)</a></li>
-            <li><a class="dropdown-item" href="/en">🇬🇧 English</a></li>
-            <li><a class="dropdown-item" href="/ru">🇷🇺 Русский</a></li>
-            <li><a class="dropdown-item" href="/tr">🇹🇷 Türkçe</a></li>
-            </ul>
-  </header>
+    {#              <ul class="dropdown-menu">#}
+    {#                {% for lang in langs %}#}
+    {#                    <li><a class="dropdown-item" href="/{{ lang.code }}">{{ lang.name_local }}</a></li>#}
+    {#                {% endfor %}#}
+    {#            </ul>#}
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/uz-latn">🇺🇿 O‘zbek (Lotin)</a></li>
+        <li><a class="dropdown-item" href="/uz-cyrl">🇺🇿 Ўзбек (Кирилл)</a></li>
+        <li><a class="dropdown-item" href="/en">🇬🇧 English</a></li>
+        <li><a class="dropdown-item" href="/ru">🇷🇺 Русский</a></li>
+        <li><a class="dropdown-item" href="/tr">🇹🇷 Türkçe</a></li>
+    </ul>
+</header>
 
-  <main class="main">
+<main class="main">
 
     <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
 
-      <div class="container">
-        <div class="row gy-4 justify-content-center justify-content-lg-between">
-          <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h1 data-aos="fade-up"> {% trans "Assalom alaykum" %} <br>
-              {% trans "Xush kelibsiz" %} !</h1>
-            <p data-aos="fade-up" data-aos-delay="100">{% trans "Biz bilan Restaraninggizga Zamonaviy muhitni yarating." %}</p>
-            <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-              <a href="#hamkor-bolish" class="btn-get-started">{% trans "Hamkor bo'lish" %}</a>
-              <a href="https://www.youtube.com/watch?v=wIJGcrfH3BA" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>{% trans "Qisqa Video" %}</span></a>
+        <div class="container">
+            <div class="row gy-4 justify-content-center justify-content-lg-between">
+                <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                    <h1 data-aos="fade-up"> {% trans "Assalom alaykum" %} <br>
+                        {% trans "Xush kelibsiz" %} !</h1>
+                    <p data-aos="fade-up"
+                       data-aos-delay="100">{% trans "Biz bilan Restaraninggizga Zamonaviy muhitni yarating." %}</p>
+                    <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+                        <a href="#hamkor-bolish" class="btn-get-started">{% trans "Hamkor bo'lish" %}</a>
+                        <a href="https://www.youtube.com/watch?v=wIJGcrfH3BA"
+                           class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>{% trans "Qisqa Video" %}</span></a>
+                    </div>
+                </div>
+                <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+                    <img src="{% static 'user_static/img/hero1.png' %}" class="img-fluid animated" alt="">
+                </div>
             </div>
-          </div>
-          <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-            <img src="{% static 'user_static/img/hero1.png' %}" class="img-fluid animated" alt="">
-          </div>
         </div>
-      </div>
 
     </section><!-- /Hero Section -->
 
     <!-- About Section -->
     <section id="about" class="about section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>{% trans "Service haqida qisqacha" %}<br></h2>
-        <p><span>Digital menu</span> <span class="description-title">{% trans "qanday ishlaydi ?" %}</span></p>
-      </div><!-- End Section Title -->
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>{% trans "Service haqida qisqacha" %}<br></h2>
+            <p><span>Digital menu</span> <span class="description-title">{% trans "qanday ishlaydi ?" %}</span></p>
+        </div><!-- End Section Title -->
 
-      <div class="container">
+        <div class="container">
 
-        <div class="row gy-4">
-          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="250">
-            <div class="content ps-0 ps-lg-5">
+            <div class="row gy-4">
+                <div class="col-lg-5" data-aos="fade-up" data-aos-delay="250">
+                    <div class="content ps-0 ps-lg-5">
 
-<p>
-    <strong>{% trans "Digital Menu qanday muammolarni hal qiladi?" %}</strong>
-    <br>
-    ✅ {% trans "Sanitariya va gigiyena muammolarini bartaraf etadi – Qog‘oz menyulardan farqli o‘laroq, mijozlar bir-biri bilan aloqada bo‘lmaydi." %}
-    <br>
-    ✅ {% trans "Menyuni yangilash muammosini yo‘q qiladi – Endi menyu o‘zgarishlari uchun qog‘oz chiqarish shart emas, barchasi raqamli tizim orqali boshqariladi." %}
-    <br>
-    ✅ {% trans "Xodimlarning vaqtini tejaydi – Ofitsiantlar mijozlarga menyu olib kelish o‘rniga xizmat ko‘rsatishga e’tibor qaratadi." %}
-    <br>
-    ✅ {% trans "Tez va qulay foydalanish – Har qanday telefon yoki planshetdan osongina foydalanish mumkin." %}
-</p>
+                        <p>
+                            <strong>{% trans "Digital Menu qanday muammolarni hal qiladi?" %}</strong>
+                            <br>
+                            ✅ {% trans "Sanitariya va gigiyena muammolarini bartaraf etadi – Qog‘oz menyulardan farqli o‘laroq, mijozlar bir-biri bilan aloqada bo‘lmaydi." %}
+                            <br>
+                            ✅ {% trans "Menyuni yangilash muammosini yo‘q qiladi – Endi menyu o‘zgarishlari uchun qog‘oz chiqarish shart emas, barchasi raqamli tizim orqali boshqariladi." %}
+                            <br>
+                            ✅ {% trans "Xodimlarning vaqtini tejaydi – Ofitsiantlar mijozlarga menyu olib kelish o‘rniga xizmat ko‘rsatishga e’tibor qaratadi." %}
+                            <br>
+                            ✅ {% trans "Tez va qulay foydalanish – Har qanday telefon yoki planshetdan osongina foydalanish mumkin." %}
+                        </p>
 
 
-              <div class="position-relative mt-4">
-                <img src="{% static 'user_static/img/menu.jpg' %}" class="img-fluid" alt="">
-                <a href="https://www.youtube.com/watch?v=6RFFNnonzxI" class="glightbox pulsating-play-btn"></a>
-              </div>
+                        <div class="position-relative mt-4">
+                            <img src="{% static 'user_static/img/menu.jpg' %}" class="img-fluid" alt="">
+                            <a href="https://www.youtube.com/watch?v=6RFFNnonzxI"
+                               class="glightbox pulsating-play-btn"></a>
+                        </div>
 
-              <p>
-                <strong>Digital Menu</strong> – {% trans "bu zamonaviy restoran va kafe egalari uchun innovatsion yechim. U QR-kod yordamida mehmonlarga menyuni tezkor va qulay tarzda ko‘rish imkonini beradi." %}
-              </p>
-   <ul>
-    <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Mijoz QR-kodni telefon kamerasidan yoki maxsus ilovadan skaner qiladi." %}</span></li>
-    <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Raqamli menyu telefon ekranida ochiladi, mijoz barcha taomlar va ichimliklar bilan tanishishi mumkin." %}</span></li>
-    <li><i class="bi bi-check-circle-fill"></i> <span>{% trans "Agar istasangiz, bevosita menyu orqali buyurtma berish imkoniyatini ham taqdim etadi." %}</span></li>
-</ul>
+                        <p>
+                            <strong>Digital Menu</strong>
+                            – {% trans "bu zamonaviy restoran va kafe egalari uchun innovatsion yechim. U QR-kod yordamida mehmonlarga menyuni tezkor va qulay tarzda ko‘rish imkonini beradi." %}
+                        </p>
+                        <ul>
+                            <li><i class="bi bi-check-circle-fill"></i>
+                                <span>{% trans "Mijoz QR-kodni telefon kamerasidan yoki maxsus ilovadan skaner qiladi." %}</span>
+                            </li>
+                            <li><i class="bi bi-check-circle-fill"></i>
+                                <span>{% trans "Raqamli menyu telefon ekranida ochiladi, mijoz barcha taomlar va ichimliklar bilan tanishishi mumkin." %}</span>
+                            </li>
+                            <li><i class="bi bi-check-circle-fill"></i>
+                                <span>{% trans "Agar istasangiz, bevosita menyu orqali buyurtma berish imkoniyatini ham taqdim etadi." %}</span>
+                            </li>
+                        </ul>
 
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
 
-      </div>
+        </div>
 
     </section><!-- /About Section -->
 
     <!-- Events Section -->
     <section id="namuna" class="events section">
 
-      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+        <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 1
-                }
-              }
-            }
-          </script>
-          <div class="swiper-wrapper">
+            <div class="swiper init-swiper">
+                <script type="application/json" class="swiper-config">
+                    {
+                      "loop": true,
+                      "speed": 600,
+                      "autoplay": {
+                        "delay": 5000
+                      },
+                      "slidesPerView": "auto",
+                      "pagination": {
+                        "el": ".swiper-pagination",
+                        "type": "bullets",
+                        "clickable": true
+                      },
+                      "breakpoints": {
+                        "320": {
+                          "slidesPerView": 1,
+                          "spaceBetween": 40
+                        },
+                        "1200": {
+                          "slidesPerView": 3,
+                          "spaceBetween": 1
+                        }
+                      }
+                    }
+                </script>
+                <div class="swiper-wrapper">
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url({% static 'user_static/img/n1.jpg' %})">
-{#              <h3>Mini Qr code</h3>#}
-              <div class="price align-self-start">{%  trans "Mini" %}</div>
-              <p class="description">
-                {% trans "bu kichik hajmli qr-kodlarni stol ustiga yopishtirib qo'yishinggiz mumkin." %}
-              </p>
-            </div><!-- End Event item -->
+                    <div class="swiper-slide event-item d-flex flex-column justify-content-end"
+                         style="background-image: url({% static 'user_static/img/n1.jpg' %})">
+                        {#              <h3>Mini Qr code</h3>#}
+                        <div class="price align-self-start">{% trans "Mini" %}</div>
+                        <p class="description">
+                            {% trans "bu kichik hajmli qr-kodlarni stol ustiga yopishtirib qo'yishinggiz mumkin." %}
+                        </p>
+                    </div><!-- End Event item -->
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url({% static 'user_static/img/n2.jpg' %})">
-{#              <h3>Private Parties</h3>#}
-              <div class="price align-self-start">{% translate 'Milliy' %}</div>
-              <p class="description">
-                {% translate 'Har bir restoran kelib chiqishiga moslangan milliy yoki yevropa styleda qilingn design .' %}
-              </p>
-            </div><!-- End Event item -->
+                    <div class="swiper-slide event-item d-flex flex-column justify-content-end"
+                         style="background-image: url({% static 'user_static/img/n2.jpg' %})">
+                        {#              <h3>Private Parties</h3>#}
+                        <div class="price align-self-start">{% translate 'Milliy' %}</div>
+                        <p class="description">
+                            {% translate 'Har bir restoran kelib chiqishiga moslangan milliy yoki yevropa styleda qilingn design .' %}
+                        </p>
+                    </div><!-- End Event item -->
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url({% static 'user_static/img/n3.jpg' %})">
-{#              <h3>Birthday Parties</h3>#}
-              <div class="price align-self-start">{% trans 'Code Main' %}</div>
-              <p class="description">
-                {% trans "Bu design asosiy e'tobor qr-kodga qarailadi,restoran brand-logo esi orqa o'rinda qolib ketadi." %}
-              </p>
-            </div><!-- End Event item -->
+                    <div class="swiper-slide event-item d-flex flex-column justify-content-end"
+                         style="background-image: url({% static 'user_static/img/n3.jpg' %})">
+                        {#              <h3>Birthday Parties</h3>#}
+                        <div class="price align-self-start">{% trans 'Code Main' %}</div>
+                        <p class="description">
+                            {% trans "Bu design asosiy e'tobor qr-kodga qarailadi,restoran brand-logo esi orqa o'rinda qolib ketadi." %}
+                        </p>
+                    </div><!-- End Event item -->
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url({% static 'user_static/img/n4.jpg' %})">
-{#              <h3>Wedding Parties</h3>#}
-              <div class="price align-self-start">{% trans "Restoran inside" %}</div>
-              <p class="description">
-                {% trans "Restaron ichki qismidan rasm olib,uni qr-kod bilan birlashtirish mumkin." %}
-              </p>
-            </div><!-- End Event item -->
+                    <div class="swiper-slide event-item d-flex flex-column justify-content-end"
+                         style="background-image: url({% static 'user_static/img/n4.jpg' %})">
+                        {#              <h3>Wedding Parties</h3>#}
+                        <div class="price align-self-start">{% trans "Restoran inside" %}</div>
+                        <p class="description">
+                            {% trans "Restaron ichki qismidan rasm olib,uni qr-kod bilan birlashtirish mumkin." %}
+                        </p>
+                    </div><!-- End Event item -->
 
-          </div>
-          <div class="swiper-pagination"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
         </div>
-
-      </div>
 
     </section><!-- /Events Section -->
 
     <!-- Hamkor bo'lish Section -->
     <section id="hamkor-bolish" class="book-a-table section">
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>{% trans "Ariza qoldirish " %}</h2>
-        <p>
-            {% trans "Quyida malumotlarni kiriting va biz o'zimiz sizga bog'lanamiz " %}</p>
-      </div><!-- End Section Title -->
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>{% trans "Ariza qoldirish " %}</h2>
+            <p>
+                {% trans "Quyida malumotlarni kiriting va biz o'zimiz sizga bog'lanamiz " %}</p>
+        </div><!-- End Section Title -->
 
-      <div class="container">
+        <div class="container">
 
-        <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
+            <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
 
-          <div class="col-lg-4 reservation-img" style="background-image: url({% static 'user_static/img/hamkorb.jpg' %});"></div>
+                <div class="col-lg-4 reservation-img"
+                     style="background-image: url({% static 'user_static/img/hamkorb.jpg' %});"></div>
 
-          <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up" data-aos-delay="200">
-
-
-{#              form#}
-         <form action="{% url 'user:submit_form' %}" method="post" role="form" class="php-email-form" id="cooperation-form">
-  {% csrf_token %}
-  <div class="row gy-4">
-    <div class="col-lg-4 col-md-6">
-      <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-    </div>
-    <div class="col-lg-4 col-md-6">
-      <input type="text" class="form-control" name="phone" placeholder="Phone number" required>
-    </div>
-    <div class="col-lg-4 col-md-6">
-      <input type="text" class="form-control" name="telegram" placeholder="Telegram username" required>
-    </div>
-  </div>
-  <div class="form-group mt-3">
-    <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
-  </div>
-  <div class="text-center mt-3">
-    <div class="loading">Loading</div>
-    <div class="sent-message">{% trans 'Your request has been sent successfully!' %}</div>
-    <div class="error-message"></div>
-    <button type="submit" id="submit-button">{% trans 'Yuborish' %}</button>
-  </div>
-</form>
-
-<!-- Include the external JavaScript file -->
-<script src="{% static 'user_static/form_of_bot/form-handler.js' %}"></script>
-
-{#              form#}
+                <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up"
+                     data-aos-delay="200">
 
 
+                    {#              form#}
+                    <form action="{% url 'user:submit_form' %}" method="post" role="form" class="php-email-form"
+                          id="cooperation-form">
+                        {% csrf_token %}
+                        <div class="row gy-4">
+                            <div class="col-lg-4 col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <input type="text" class="form-control" name="phone" placeholder="Phone number"
+                                       required>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <input type="text" class="form-control" name="telegram" placeholder="Telegram username"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+                        </div>
+                        <div class="text-center mt-3">
+                            <div class="loading">Loading</div>
+                            <div class="sent-message">{% trans 'Your request has been sent successfully!' %}</div>
+                            <div class="error-message"></div>
+                            <button type="submit" id="submit-button">{% trans 'Yuborish' %}</button>
+                        </div>
+                    </form>
+
+                    <!-- Include the external JavaScript file -->
+                    <script src="{% static 'user_static/form_of_bot/form-handler.js' %}"></script>
+
+                    {#              form#}
+
+
+                </div>
+
+            </div>
         </div>
-
-      </div>
-      </div>
 
     </section><!-- /Hamkor bo'lish Section -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>{% trans 'Contact' %}</h2>
-{#        <p><span>Quyida bizning manzilimizni ko'rishingiz mumkin</span></p>#}
-      </div><!-- End Section Title -->
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>{% trans 'Contact' %}</h2>
+            {#        <p><span>Quyida bizning manzilimizni ko'rishingiz mumkin</span></p>#}
+        </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="mb-5">
-          <iframe style="width: 100%; height: 400px;" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2550.831565081709!2d69.33388107544678!3d41.34209497130569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDIwJzMxLjUiTiA2OcKwMjAnMTEuMiJF!5e1!3m2!1sen!2s!4v1738608982169!5m2!1sen!2s" frameborder="0" allowfullscreen=""></iframe>
-        </div><!-- End Google Maps -->
+            <div class="mb-5">
+                <iframe style="width: 100%; height: 400px;"
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2550.831565081709!2d69.33388107544678!3d41.34209497130569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDIwJzMxLjUiTiA2OcKwMjAnMTEuMiJF!5e1!3m2!1sen!2s!4v1738608982169!5m2!1sen!2s"
+                        frameborder="0" allowfullscreen=""></iframe>
+            </div><!-- End Google Maps -->
 
 
-        <div class="row gy-4">
+            <div class="row gy-4">
 
-          <div class="col-md-6">
-            <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
-              <i class="icon bi bi-geo-alt flex-shrink-0"></i>
-              <div>
-                <h3>{% trans 'Address' %}</h3>
-                <p>Olimlar 4, 100164, Tashkent, Uzbekistan</p>
-              </div>
+                <div class="col-md-6">
+                    <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="icon bi bi-geo-alt flex-shrink-0"></i>
+                        <div>
+                            <h3>{% trans 'Address' %}</h3>
+                            <p>Olimlar 4, 100164, Tashkent, Uzbekistan</p>
+                        </div>
+                    </div>
+                </div><!-- End Info Item -->
+
+                <div class="col-md-6">
+                    <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="300">
+                        <i class="icon bi bi-telephone flex-shrink-0"></i>
+                        <div>
+                            <h3>{% trans 'Call Us' %}</h3>
+                            <p>+998 94 871 21 02</p>
+                        </div>
+                    </div>
+                </div><!-- End Info Item -->
+
+
             </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-md-6">
-            <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="300">
-              <i class="icon bi bi-telephone flex-shrink-0"></i>
-              <div>
-                <h3>{% trans 'Call Us' %}</h3>
-                <p>+998 94 871 21 02</p>
-              </div>
-            </div>
-          </div><!-- End Info Item -->
-
 
         </div>
 
-      </div>
-
     </section><!-- /Contact Section -->
 
-  </main>
+</main>
 
-  <footer id="footer" class="footer dark-background">
+<footer id="footer" class="footer dark-background">
 
-{#    <div class="container">#}
-{#      <div class="row gy-3">#}
-{#        <div class="col-lg-3 col-md-6 d-flex">#}
-{#          <i class="bi bi-geo-alt icon"></i>#}
-{#          <div class="address">#}
-{#            <h4>Address</h4>#}
-{#            <p>A108 Adam Street</p>#}
-{#            <p>New York, NY 535022</p>#}
-{#            <p></p>#}
-{#          </div>#}
-{##}
-{#        </div>#}
-{##}
-{#        <div class="col-lg-3 col-md-6 d-flex">#}
-{#          <i class="bi bi-telephone icon"></i>#}
-{#          <div>#}
-{#            <h4>Contact</h4>#}
-{#            <p>#}
-{#              <strong>Phone:</strong> <span>+1 5589 55488 55</span><br>#}
-{#              <strong>Email:</strong> <span>info@example.com</span><br>#}
-{#            </p>#}
-{#          </div>#}
-{#        </div>#}
-{##}
-{#        <div class="col-lg-3 col-md-6 d-flex">#}
-{#          <i class="bi bi-clock icon"></i>#}
-{#          <div>#}
-{#            <h4>Opening Hours</h4>#}
-{#            <p>#}
-{#              <strong>Mon-Sat:</strong> <span>11AM - 23PM</span><br>#}
-{#              <strong>Sunday</strong>: <span>Closed</span>#}
-{#            </p>#}
-{#          </div>#}
-{#        </div>#}
-{##}
-{#        <div class="col-lg-3 col-md-6">#}
-{#          <h4>Follow Us</h4>#}
-{#          <div class="social-links d-flex">#}
-{#            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>#}
-{#            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>#}
-{#            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>#}
-{#            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>#}
-{#          </div>#}
-{#        </div>#}
-{##}
-{#      </div>#}
-{#    </div>#}
+    {#    <div class="container">#}
+    {#      <div class="row gy-3">#}
+    {#        <div class="col-lg-3 col-md-6 d-flex">#}
+    {#          <i class="bi bi-geo-alt icon"></i>#}
+    {#          <div class="address">#}
+    {#            <h4>Address</h4>#}
+    {#            <p>A108 Adam Street</p>#}
+    {#            <p>New York, NY 535022</p>#}
+    {#            <p></p>#}
+    {#          </div>#}
+    {##}
+    {#        </div>#}
+    {##}
+    {#        <div class="col-lg-3 col-md-6 d-flex">#}
+    {#          <i class="bi bi-telephone icon"></i>#}
+    {#          <div>#}
+    {#            <h4>Contact</h4>#}
+    {#            <p>#}
+    {#              <strong>Phone:</strong> <span>+1 5589 55488 55</span><br>#}
+    {#              <strong>Email:</strong> <span>info@example.com</span><br>#}
+    {#            </p>#}
+    {#          </div>#}
+    {#        </div>#}
+    {##}
+    {#        <div class="col-lg-3 col-md-6 d-flex">#}
+    {#          <i class="bi bi-clock icon"></i>#}
+    {#          <div>#}
+    {#            <h4>Opening Hours</h4>#}
+    {#            <p>#}
+    {#              <strong>Mon-Sat:</strong> <span>11AM - 23PM</span><br>#}
+    {#              <strong>Sunday</strong>: <span>Closed</span>#}
+    {#            </p>#}
+    {#          </div>#}
+    {#        </div>#}
+    {##}
+    {#        <div class="col-lg-3 col-md-6">#}
+    {#          <h4>Follow Us</h4>#}
+    {#          <div class="social-links d-flex">#}
+    {#            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>#}
+    {#            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>#}
+    {#            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>#}
+    {#            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>#}
+    {#          </div>#}
+    {#        </div>#}
+    {##}
+    {#      </div>#}
+    {#    </div>#}
 
-{#    <div class="container copyright text-center mt-4">#}
-{#      <p><span>Biz bilan</span> <strong class="px-1 sitename">Yummy</strong> <span>All Rights Reserved</span></p>#}
-{#      <div class="credits">#}
-{#        Created by <a href="https://bootstrapmade.com/">Alex</a>#}
-{#      </div>#}
-{#    </div>#}
+    {#    <div class="container copyright text-center mt-4">#}
+    {#      <p><span>Biz bilan</span> <strong class="px-1 sitename">Yummy</strong> <span>All Rights Reserved</span></p>#}
+    {#      <div class="credits">#}
+    {#        Created by <a href="https://bootstrapmade.com/">Alex</a>#}
+    {#      </div>#}
+    {#    </div>#}
 
-  </footer>
+</footer>
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
+<!-- Preloader -->
+<div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
-  <script src="{% static 'user_static/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'user_static/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'user_static/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'user_static/vendor/purecounter/purecounter_vanilla.js' %}"></script>
-  <script src="{% static 'user_static/vendor/swiper/swiper-bundle.min.js' %}"></script>
+<!-- Vendor JS Files -->
+<script src="{% static 'user_static/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'user_static/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'user_static/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'user_static/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+<script src="{% static 'user_static/vendor/swiper/swiper-bundle.min.js' %}"></script>
 
-  <!-- Main JS File -->
-  <script src="{% static 'user_static/js/main.js' %}"></script>
+<!-- Main JS File -->
+<script src="{% static 'user_static/js/main.js' %}"></script>
 
 </body>
 
