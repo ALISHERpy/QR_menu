@@ -27,7 +27,6 @@ class Restaurant(models.Model):
         super().save(*args, **kwargs)
 
     def is_expired(self):
-        """Check if the restaurant's subscription has expired."""
         return self.expiration_date and self.expiration_date < date.today()
 
     def __str__(self):

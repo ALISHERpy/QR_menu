@@ -3,18 +3,49 @@
 {% block productdetail %}
     <div class="page fullscreen">
         <div class="product-page">
-            <div class="product-page__img">
-                <img src="{{ product.image.url }}" alt="{{ product.title }}">
+            <div class="page__header">
+{#                <button class="btn btn--icon btn--icon--lg" style="background-color: rgb(240, 240, 240);" onclick="window.location.href='{% url 'meal:meal-list-category' product.restaurant.uid product.category.slug %}'">#}
+{#                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">#}
+{#                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>#}
+{#                    </svg>#}
+{#                </button>#}
+      {% if product.category.parent %}
+    <!-- If it is a subcategory, go to its parent category -->
+    <button class="btn btn--icon btn--icon--lg" style="background-color: rgb(240, 240, 240);"
+            onclick="window.location.href='{% url 'meal:meal-list-category' product.restaurant.uid product.category.parent.slug %}'">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
+        </svg>
+    </button>
+{% else %}
+    <!-- If it is a main category, go to its own page -->
+    <button class="btn btn--icon btn--icon--lg" style="background-color: rgb(240, 240, 240);"
+            onclick="window.location.href='{% url 'meal:meal-list-category' product.restaurant.uid product.category.slug %}'">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
+        </svg>
+    </button>
+{% endif %}
+
+
+            </div>
+
+            <div class="product-page__img" style="width: 100%; height: auto; overflow: hidden;">
+                <img src="{{ product.image.url }}" alt="{{ product.title }}" style="width: 100%; height: auto; object-fit: cover;">
             </div>
 
             <div class="product-page__header">
-{#                <div class="product-page__cat-image">#}
-{#                    <img src="{{ product.category.image.url }}" alt="Category" style="height: 40px;">#}
-{#                </div>#}
+                <div class="product-page__cat-image">
+                    {% if product.category.image %}
+                        <img src="{{ product.category.image.url }}" alt="Category" style="height: 40px;">
+                    {% endif %}
+                </div>
 
                 <div class="product-page__product-name text-overflow">
                     {{ product.title }}
                 </div>
+
+                <div style="flex-grow: 1;"></div>
 
                 <div class="product-page__product-price no-wrap">
                     {{ product.price }} sum
@@ -26,11 +57,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        setTimeout(function() {
-            window.location.href = "{% url 'meal:meal-list' product.restaurant.uid %}";
-        }, 5000);  // 5 sekunddan keyin menyu sahifasiga qaytadi
-    </script>
-
 {% endblock %}

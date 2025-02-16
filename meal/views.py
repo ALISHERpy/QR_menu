@@ -49,5 +49,7 @@ def products_by_category(request, uid=None, category_slug=None):
         'current_category': category,
     })
     # cache.set(cache_key, response, 900)
+
+
     return response
 
