@@ -35,6 +35,15 @@ INSTALLED_APPS = [
     'user',
     'restaurant',
 
+    ######extra
+    'rest_framework',
+    'rest_framework_simplejwt',
+    # 'drf_yasg',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
+    'django_filters',
+    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
@@ -111,6 +120,31 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #######################################################################
+
+REST_FRAMEWORK = {
+
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+            'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'core.pagination.StandardResultsSetPagination',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Digital menu api manual',
+    'DESCRIPTION': 'description here',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+    'SWAGGER_UI_DIST': 'SIDECAR',  # shorthand to use the sidecar instead
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'REDOC_DIST': 'SIDECAR',
+}
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap5'
