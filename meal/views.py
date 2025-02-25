@@ -48,7 +48,6 @@ def products_by_category(request, uid=None, category_slug=None):
     })
     # cache.set(cache_key, response, 900)
 
-
     return response
 
 from rest_framework.views import APIView
@@ -71,7 +70,7 @@ class ProductsByCategoryAPIView(APIView):
     """🔍 Retrieve all products (optionally filtered by category) for the authenticated user's restaurant"""
     permission_classes = [IsAuthenticated]
     def get(self, request, category_slug=None):
-        restaurant = request.user.restaurant  # Get the authenticated user's restaurant
+        restaurant = request.user.restaurant
         if restaurant.is_expired():
             return Response({"error": "Restaurant subscription has expired."}, status=status.HTTP_403_FORBIDDEN)
 
