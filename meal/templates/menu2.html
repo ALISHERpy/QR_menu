@@ -112,6 +112,9 @@
 
                 <section class="menu-products-section menu-products-section--grid" style="padding-bottom:160px;">
                     <div class="menu-grid">
+
+
+
                         {% for product in products %}
                             <div class="menu-product">
                                 <div class="menu-product__item">
@@ -119,9 +122,11 @@
                                         <div style="flex-grow:1;"></div>
                                     </div>
                                     <a href="{% url 'meal:product-detail' product.slug %}">
+                    {% if product.image %}
                                         <div class="menu-product__item__img">
-                                            <img class="menu-product__item__img__full" src="{{ product.image.url }}" alt="Item image">
+                                            <img class="menu-product__item__img__full" src="{{ product.image.url }}" alt="Rasmsiz yuklangan">
                                         </div>
+                    {% endif %}
                                     </a>
                                     <div class="menu-product__item__top-block">
                                         <div class="menu-product__item__name text-overflow">{{ product.title }}</div>
