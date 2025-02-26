@@ -1,0 +1,242 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-14 23:17+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: core/settings.py:169
+msgid "O‘zbek (Lotin)"
+msgstr "Özbek (Latin)"
+
+#: core/settings.py:170
+msgid "Ўзбек (Кирилл)"
+msgstr "Özbek (Kiril)"
+
+#: core/settings.py:171
+msgid "Русский"
+msgstr "Rusça"
+
+#: core/settings.py:172
+msgid "English"
+msgstr "İngilizce"
+
+#: core/settings.py:173
+msgid "Turkish"
+msgstr "Türkçe"
+
+#: restaurant/templates/restaurant/detail-page.html:41
+msgid "Restoran haqida to'liq malumot"
+msgstr "Restoran hakkında tam bilgi"
+
+#: restaurant/templates/restaurant/detail-page.html:60
+msgid "Video Link"
+msgstr "Video Bağlantısı"
+
+#: restaurant/templates/restaurant/detail-page.html:87
+msgid "ko'rish"
+msgstr "görmek"
+
+#: restaurant/templates/restaurant/restaurant_list2.html:12
+msgid "Mijozlarimiz"
+msgstr "Müşterilerimiz"
+
+#: restaurant/templates/restaurant/restaurant_list2.html:28
+msgid "Bizga ishonch bildirgan Restorantlar ro'yxati"
+msgstr "Bize güvenen restoranların listesi"
+
+#: restaurant/templates/restaurant/restaurant_list2.html:29
+msgid "Istalgan restarantga bosing va u haqida toliq malumotni o'qib oling"
+msgstr "İstediğiniz restorana tıklayın ve onun hakkında tam bilgiyi okuyun"
+
+#: restaurant/templates/restaurant/restaurant_list2.html:49
+#: user/templates/index.html:49
+msgid "Bosh sahifa"
+msgstr "Ana Sayfa"
+
+#: user/templates/index.html:50
+msgid "D-Menu haqida"
+msgstr "D-Menu hakkında"
+
+#: user/templates/index.html:51
+msgid "Namunalar"
+msgstr "Örnekler"
+
+#: user/templates/index.html:52
+msgid "Mizojlarimiz"
+msgstr "Müşterilerimiz"
+
+#: user/templates/index.html:54 user/templates/index.html:287
+msgid "Contact"
+msgstr "İletişim"
+
+#: user/templates/index.html:60 user/templates/index.html:93
+msgid "Hamkor bo'lish"
+msgstr "Ortak olmak"
+
+#: user/templates/index.html:89
+msgid "Assalom alaykum"
+msgstr "Selamün aleyküm"
+
+#: user/templates/index.html:90
+msgid "Xush kelibsiz"
+msgstr "Hoş geldiniz"
+
+#: user/templates/index.html:91
+msgid "Biz bilan Restaraninggizga Zamonaviy muhitni yarating."
+msgstr "Bizimle restoranınıza modern bir atmosfer kazandırın."
+
+#: user/templates/index.html:94
+msgid "Qisqa Video"
+msgstr "Kısa Video"
+
+#: user/templates/index.html:110
+msgid "Service haqida qisqacha"
+msgstr "Hizmet hakkında kısa bilgi"
+
+#: user/templates/index.html:111
+msgid "qanday ishlaydi ?"
+msgstr "nasıl çalışır?"
+
+#: user/templates/index.html:120
+msgid ""
+"bu zamonaviy restoran va kafe egalari uchun innovatsion yechim. U QR-kod "
+"yordamida mehmonlarga menyuni tezkor va qulay tarzda ko‘rish imkonini beradi."
+msgstr ""
+"Bu, modern restoran ve kafe sahipleri için yenilikçi bir çözümdür. QR kod "
+"sayesinde misafirlerin menüyü hızlı ve kolay bir şekilde görmelerini sağlar."
+
+#: user/templates/index.html:123
+msgid "Mijoz QR-kodni telefon kamerasidan yoki maxsus ilovadan skaner qiladi."
+msgstr "Müşteri, QR kodunu telefon kamerası veya özel bir uygulama ile tarar."
+
+#: user/templates/index.html:124
+msgid ""
+"Raqamli menyu telefon ekranida ochiladi, mijoz barcha taomlar va ichimliklar "
+"bilan tanishishi mumkin."
+msgstr ""
+"Dijital menü telefon ekranında açılır, müşteri tüm yemekler ve içecekler "
+"hakkında bilgi alabilir."
+
+#: user/templates/index.html:125
+msgid ""
+"Agar istasangiz, bevosita menyu orqali buyurtma berish imkoniyatini ham "
+"taqdim etadi."
+msgstr ""
+"İsterseniz, doğrudan menü üzerinden sipariş verme imkanı da sunar."
+
+#: user/templates/index.html:129
+msgid "Digital Menu qanday muammolarni hal qiladi?"
+msgstr "Dijital Menü hangi sorunları çözüyor?"
+
+#: user/templates/index.html:131
+msgid ""
+"Sanitariya va gigiyena muammolarini bartaraf etadi – Qog‘oz menyulardan "
+"farqli o‘laroq, mijozlar bir-biri bilan aloqada bo‘lmaydi."
+msgstr ""
+"Hijyen sorunlarını ortadan kaldırır – Kağıt menülere kıyasla müşteriler "
+"birbiriyle temas etmez."
+
+#: user/templates/index.html:133
+msgid ""
+"Menyuni yangilash muammosini yo‘q qiladi – Endi menyu o‘zgarishlari uchun "
+"qog‘oz chiqarish shart emas, barchasi raqamli tizim orqali boshqariladi."
+msgstr ""
+"Menüyü güncelleme sorununu ortadan kaldırır – Artık menü değişiklikleri için "
+"kağıt baskı almak gereksiz, her şey dijital sistem üzerinden yönetilir."
+
+#: user/templates/index.html:135
+msgid ""
+"Xodimlarning vaqtini tejaydi – Ofitsiantlar mijozlarga menyu olib kelish "
+"o‘rniga xizmat ko‘rsatishga e’tibor qaratadi."
+msgstr ""
+"Personelin zamanını korur – Garsonlar müşterilere menü getirmek yerine "
+"hizmet vermeye odaklanabilir."
+
+#: user/templates/index.html:137
+msgid ""
+"Tez va qulay foydalanish – Har qanday telefon yoki planshetdan osongina "
+"foydalanish mumkin."
+msgstr ""
+"Hızlı ve kolay kullanım – Herhangi bir telefon veya tabletten rahatça "
+"kullanılabilir."
+
+#: user/templates/index.html:188
+msgid "Mini"
+msgstr "Mini"
+
+#: user/templates/index.html:190
+msgid ""
+"bu kichik hajmli qr-kodlarni stol ustiga yopishtirib qo'yishinggiz mumkin."
+msgstr ""
+"Bu küçük boyutlu QR kodlarını masanın üzerine yapıştırabilirsiniz."
+
+#: user/templates/index.html:196
+msgid "Milliy"
+msgstr "Milli"
+
+#: user/templates/index.html:198
+msgid ""
+"Har bir restoran kelib chiqishiga moslangan milliy yoki yevropa styleda "
+"qilingn design ."
+msgstr ""
+"Her restoranın kökenine uygun milli veya Avrupa tarzında hazırlanmış tasarım."
+
+#: user/templates/index.html:204
+msgid "Code Main"
+msgstr "Kod Ana"
+
+#: user/templates/index.html:206
+msgid ""
+"Bu design asosiy e'tobor qr-kodga qarailadi,restoran brand-logo esi orqa "
+"o'rinda qolib ketadi."
+msgstr ""
+"Bu tasarımda asıl odak QR kod üzerindedir, restoranın marka logosu ikinci "
+"planda kalır."
+
+#: user/templates/index.html:212
+msgid "Restoran inside"
+msgstr "Restoran içi"
+
+#: user/templates/index.html:214
+msgid ""
+"Restaron ichki qismidan rasm olib,uni qr-kod bilan birlashtirish mumkin."
+msgstr ""
+"Restoranın iç kısmından fotoğraf çekip, bunu QR kod ile birleştirmek "
+"mümkündür."
+
+#: user/templates/index.html:230
+msgid "Ariza qoldirish "
+msgstr "Başvuru bırak"
+
+#: user/templates/index.html:232
+msgid "Quyida malumotlarni kiriting va biz o'zimiz sizga bog'lanamiz "
+msgstr "Aşağıdaki bilgileri girin, sizinle iletişime geçeceğiz."
+
+#: user/templates/index.html:263
+msgid "Your request has been sent successfully!"
+msgstr "Talebiniz başarıyla gönderildi!"
+
+#: user/templates/index.html:265
+msgid "Yuborish"
+msgstr "Gönder"
+
+#: user/templates/index.html:304
+msgid "Address"
+msgstr "Adres"
+
+#: user/templates/index.html:314
+msgid "Call Us"
+msgstr "Bizi arayın"
