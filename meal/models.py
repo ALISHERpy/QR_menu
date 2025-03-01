@@ -37,7 +37,7 @@ class Meal(models.Model):
     slug = ShortUUIDField(unique=True, editable=False, db_index=True,default=shortuuid.uuid)  
 
     description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(max_digits=8, decimal_places=2,default=1)
+    price = models.CharField(max_length=32, default='1')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='meals')
     image = models.ImageField(upload_to='meals', blank=True, null=True)
 
