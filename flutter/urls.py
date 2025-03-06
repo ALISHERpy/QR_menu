@@ -8,6 +8,7 @@ app_name='flutter'
 
 router = DefaultRouter()
 router.register('Meal', MealModelViewSet, 'meal')
+router.register('Category', CategoryModelViewSet, 'category')
 
 
 urlpatterns = [

@@ -12,15 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 def product_detail(request, slug):
     product = get_object_or_404(Meal, slug=slug, is_available=True)
     return render(request, 'product_detail.html', {'product': product})
-#
-# @cache_page(60 * 15)
 def products_by_category(request, uid=None, category_slug=None):
-    # cache_key = f"menu_{uid}_{category_slug}"
-    # cached_data = cache.get(cache_key)
-    #
-    # if cached_data:
-    #     return cached_data
-
     restaurant = Restaurant.objects.prefetch_related("categories").get(uid=uid)
 
     if restaurant.is_expired():
@@ -43,6 +35,9 @@ def products_by_category(request, uid=None, category_slug=None):
         subcategories = category.subcategories.all()
         products = products.filter(Q(category=category) | Q(category__in=subcategories))
 
+    # **list_price ni har bir `product` uchun qo‘shish**
+    for product in products:
+        product.list_price = product.price.split('/') if '/' in product.price else [product.price]
 
     response = render(request, f'menu{restaurant.menu_design}.html', {
         "restaurant": restaurant,
@@ -51,11 +46,7 @@ def products_by_category(request, uid=None, category_slug=None):
         'products': products,
         'current_category': category,
     })
-    # cache.set(cache_key, response, 900)
-
     return response
-
-
 
 class ProductDetailAPIView(APIView):
     def get(self, request, slug):

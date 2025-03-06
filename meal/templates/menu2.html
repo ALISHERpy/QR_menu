@@ -131,12 +131,21 @@
                                     <div class="menu-product__item__top-block">
                                         <div class="menu-product__item__name text-overflow">{{ product.title}}</div>
                                     </div>
-                                    <br>
 <div class="menu-product__item__name text-overflow"
      style="display: flex; justify-content: center; align-items: center; text-align: center;
             background-color: #dfbe18; color: black; padding: 5px; border-radius: 5px;">
-    {{ product.price }} sum
+
+    {% if product.list_price %}
+        {% for narx in product.list_price %}
+            {{ narx }} sum
+            <br>
+        {% endfor %}
+    {% else %}
+        {{ product.price }} sum
+    {% endif %}
+
 </div>
+
                                 </div>
                             </div>
                         {% endfor %}
