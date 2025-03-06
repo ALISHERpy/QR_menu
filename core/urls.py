@@ -10,6 +10,7 @@ urlpatterns = [
 
     path("xadmin/", admin.site.urls),
     path('', include('user.urls')),
+    path('planshet/', include('flutter.urls')),
     path('prod/', include('meal.urls')),
     path('rest/', include('restaurant.urls')),
     path('i18n/setlang/', set_language, name='set_language'),  # ✅ Til almashtirish yo‘nalishi

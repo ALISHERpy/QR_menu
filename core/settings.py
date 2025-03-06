@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'meal',
     'user',
     'restaurant',
+    'flutter',
 
     ######extra
     'rest_framework',
