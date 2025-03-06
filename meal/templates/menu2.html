@@ -129,9 +129,14 @@
                     {% endif %}
                                     </a>
                                     <div class="menu-product__item__top-block">
-                                        <div class="menu-product__item__name text-overflow">{{ product.title }}</div>
-                                        <div class="menu-product__item__price no-wrap">{{ product.price }}</div>
+                                        <div class="menu-product__item__name text-overflow">{{ product.title}}</div>
                                     </div>
+                                    <br>
+<div class="menu-product__item__name text-overflow"
+     style="display: flex; justify-content: center; align-items: center; text-align: center;
+            background-color: #dfbe18; color: black; padding: 5px; border-radius: 5px;">
+    {{ product.price }} sum
+</div>
                                 </div>
                             </div>
                         {% endfor %}
