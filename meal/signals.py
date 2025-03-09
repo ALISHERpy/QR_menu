@@ -1,11 +1,10 @@
 import os
 import uuid
-from django.db import models
 from django.db.models.signals import pre_save, post_delete
 from django.dispatch import receiver
-from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from .models import Meal, Category
+from django.core.exceptions import ValidationError
 
 # Utility function to delete the old image file if it exists
 def delete_old_file(path):
@@ -60,3 +59,12 @@ def delete_old_category_image(sender, instance, **kwargs):
 def delete_category_image_on_delete(sender, instance, **kwargs):
     if instance.image:
         delete_old_file(instance.image.path)
+
+# @receiver(pre_save, sender=Meal)
+# def limit_meals_per_restaurant(sender, instance, **kwargs):
+#     restaurant = instance.restaurant
+#     max_meals = restaurant.meal_limit  # Faraz qilaylik, Restaurant modelida max_meals maydoni mavjud
+#     current_meals = Meal.objects.filter(restaurant=restaurant).count()
+#
+#     if current_meals >= max_meals:
+#         raise ValidationError(f"Ushbu restoran uchun maksimal {max_meals} ta taom qo'shish mumkin.")

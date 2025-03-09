@@ -1,0 +1,18 @@
+:root {
+    --ik-bg-color: #ffffffff;
+    --ik-bg-high-contrast-color: #333333;
+    --ik-bg-low-contrast-color: #eeeeee;
+    --ik-accent-color: #24ae43;
+    --ik-accent-contrast-color: #ffffff;
+    --ik-header-bg-color: #ffffff;
+    --ik-header-bg-second-color: #eeeeee;
+    --ik-header-highlight-color: #f7ce22;
+    --ik-header-bg-high-contrast-color: #333333;
+    --ik-header-bg-low-contrast-color: #f5f5f5;
+    --ik-tab-highlight-color: #016a1b;
+    --ik-product-bg-color: #fafafa;
+    --ik-product-bg-high-contrast-color: #222222;
+    --ik-basket-header-bg-color: #111111;
+    --ik-basket-header-bg-high-contrast-color: #ffffff;
+    --ik-heart-color: #be0707;
+}

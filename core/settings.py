@@ -1,16 +1,20 @@
 
 from datetime import timedelta
 from pathlib import Path
-BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-p)l#j&%-@y^peje^jzyqw!4&w64%o+gk$d=!9xe3z&e!k)=s3g'
+from dotenv import load_dotenv
+import os
 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 # settings.py
 
 DEBUG = True
 
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'your-domain.com']
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','digitalmenu.uz', 'www.digitalmenu.uz']
 
+load_dotenv()
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Application definition
 
@@ -178,20 +182,18 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
     'http://digitalmenu.uz',
-    'https://digitalmenu.uz',
+    "https://digitalmenu.uz",
+    "https://www.digitalmenu.uz",
 ]
 
-# CORS_ALLOWED_ORIGINS = [
-#     'https://web-production-8508.up.railway.app',
-#     'https://yourcustomdomain.com'
-# ]
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB (adjust as needed)
 
 AUTH_USER_MODEL='user.User'
 
 # bot
-TELEGRAM_BOT_TOKEN = '6873534034:AAFsF_IxGbRAauDkM7M38CvP611YYV8tm-M'
-TELEGRAM_CHAT_ID = '-4770744934'
+TELEGRAM_BOT_TOKEN=os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID=os.getenv("TELEGRAM_CHAT_ID")
+
 from django.utils.translation import gettext_lazy as _
 
 LANGUAGES = [
@@ -248,5 +250,16 @@ CSRF_TRUSTED_ORIGINS = [
 #     'https://web-production-8508.up.railway.app',
 #     'https://yourcustomdomain.com'
 # ]
+#
+# # Xavfsizlik sozlamalari
+# SECURE_SSL_REDIRECT = True  # HTTPS ga yo'naltirish
+# SESSION_COOKIE_SECURE = True  # Faqat HTTPS orqali cookie yuborish
+# CSRF_COOKIE_SECURE = True  # Faqat HTTPS orqali CSRF cookie yuborish
+# SECURE_HSTS_SECONDS = 31536000  # HSTS (HTTP Strict Transport Security) ni yoqish
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Subdomains uchun ham HSTS ni qo'llash
+# SECURE_HSTS_PRELOAD = True  # HSTS preload ro'yxatiga qo'shish
+# SECURE_CONTENT_TYPE_NOSNIFF = True  # Content-Type ni tekshirish
+# SECURE_BROWSER_XSS_FILTER = True  # XSS hujumlaridan himoya qilish
+# X_FRAME_OPTIONS = 'DENY'  # Saytni iframe orqali yuklashni bloklash
 
 ####################################deploy settings##################################

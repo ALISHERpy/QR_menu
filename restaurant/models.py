@@ -13,6 +13,7 @@ class Restaurant(models.Model):
 
     brand_logo = models.ImageField(upload_to='restaurants', blank=True, default='default.jpg')
     background_image = models.ImageField(upload_to='restaurants', blank=True, default='default.jpg')
+    meal_limit = models.IntegerField(default=200,null=True,blank=True)
 
     insta_link = models.CharField(max_length=48, blank=True,null=True,default='https://www.instagram.com/alisher_py')
     short_video = models.CharField(max_length=48, blank=True,null=True)
