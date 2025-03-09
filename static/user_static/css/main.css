@@ -1646,3 +1646,20 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+.mobile-nav-toggle {
+    display: none; /* Dastlab yashirish */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    cursor: pointer;
+    font-size: 24px;
+    color: #000;
+}
+
+@media (max-width: 1200px) {
+    .mobile-nav-toggle.d-xl-none {
+        display: block !important; /* Kichik ekranlarda ko'rsatish */
+    }
+}
