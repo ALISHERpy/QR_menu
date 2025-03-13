@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name }} Menu</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{% static 'menu3/main.css' %}">
+    <!-- Link to the external JS file -->
+    <script src="{% static 'menu3/main.js' %}" defer></script>
+</head>
+<body>
+
+    <!-- Navbar for categories -->
+    <div class="navbar">
+        {% for category in categories %}
+            <a href="#{{ category.name }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+
+    <!-- Meals Display -->
+    {% for category_name, meal_list in meals.items %}
+        <div class="meal-section" id="{{ category_name }}">
+            <h1>{{ category_name }}</h1>
+            {% if meal_list %}
+                <div class="meal-items">
+                    {% for meal in meal_list %}
+                        <div class="meal-item" onclick="showMealDetails('{{ meal.name }}', '{{ meal.title }}', '{{ meal.price }}', '{{ meal.description|escapejs }}', '{{ meal.image.url }}')">
+                            <img src="{{ meal.image.url }}" alt="{{ meal.name }}">
+                            <div class="meal-name">{{ meal.name }}</div>
+                            <p>{{ meal.title }}</p>
+                            <p>Price: {{ meal.price }} sum</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No meals available for this category.</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <!-- Modal for meal details -->
+    <div id="mealModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="mealImage" src="" alt="Meal Image" class="meal-image">
+            <h2 id="mealName"></h2>
+            <p id="mealTitle"></p>
+            <p id="mealDescription"></p>
+            <p id="mealPrice"></p>
+            <button id="addToCartButton" onclick="addToCart()">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Cart (for demonstration purposes) -->
+    <div id="cart">
+        <h3>Cart:</h3>
+        <ul id="cartItems"></ul>
+    </div>
+
+</body>
+</html>

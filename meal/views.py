@@ -14,6 +14,8 @@ def product_detail(request, slug):
     return render(request, 'product_detail.html', {'product': product})
 def products_by_category(request, uid=None, category_slug=None):
     restaurant = Restaurant.objects.prefetch_related("categories").get(uid=uid)
+    if restaurant.menu_design==3:
+        menu3(request=request,uid=uid)
 
     if restaurant.is_expired():
         return render(request, 'restaurant_expired.html', {'restaurant': restaurant})
@@ -47,6 +49,45 @@ def products_by_category(request, uid=None, category_slug=None):
         'current_category': category,
     })
     return response
+
+def menu3(request, uid=None):
+    the_rest = Restaurant.objects.get(uid=uid)
+    categories = Category.objects.filter(restaurant=the_rest)
+    meals={}
+    for c in categories:
+        meals[c.name]=Meal.objects.filter(restaurant=the_rest,category=c) 
+
+    return render(request, 'menu3.html', {
+        'categories': categories,
+        'meals': meals,
+        'restaurant':the_rest
+    })
+
+# views.py
+from django.http import JsonResponse
+import json
+
+def confirm_order(request):
+    print(f"Request Method: {request.method}")
+    print(f"Request Path: {request.path}")
+    print(f"Request Body: {request.body}")
+    
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        cart_items = data.get('items', [])
+        print("Cart Items:", cart_items)
+
+        # Process the order here
+        
+        return JsonResponse({'status': 'success', 'message': 'Order confirmed', 'items': cart_items})
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
+
+
+
+
+####__________________________________________________
 
 class ProductDetailAPIView(APIView):
     def get(self, request, slug):

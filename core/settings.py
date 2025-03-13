@@ -44,6 +44,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -181,6 +182,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://digitalmenu.uz',
 ]
 
+
 # CORS_ALLOWED_ORIGINS = [
 #     'https://web-production-8508.up.railway.app',
 #     'https://yourcustomdomain.com'
@@ -212,7 +214,12 @@ LOCALE_PATHS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://digitalmenu.uz",
     "https://www.digitalmenu.uz",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000"
 ]
+
+CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
 
 ####################################deploy settings##################################
 # ALLOWED_HOSTS = [
