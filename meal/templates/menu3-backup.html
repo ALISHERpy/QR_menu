@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ restaurant.name }} Menu</title>
-    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="{% static 'menu3/main.css' %}">
-    <!-- Link to the external JS file -->
     <script src="{% static 'menu3/main.js' %}" defer></script>
 </head>
 <body>
+    <!-- CSRF Token - This is the correct way to include it -->
+    {% csrf_token %}
 
     <!-- Navbar for categories -->
     <div class="navbar">
@@ -44,19 +44,38 @@
     <div id="mealModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <img id="mealImage" src="" alt="Meal Image" class="meal-image">
+            <img id="mealImage" src="/placeholder.svg" alt="Meal Image" class="meal-image">
             <h2 id="mealName"></h2>
             <p id="mealTitle"></p>
             <p id="mealDescription"></p>
             <p id="mealPrice"></p>
+
+            <!-- Quantity controls inside the modal -->
+            <div class="meal-count">
+                <button class="count-btn" onclick="decreaseCount()">-</button>
+                <span id="mealCount">0</span>
+                <button class="count-btn" onclick="increaseCount()">+</button>
+            </div>
+
             <button id="addToCartButton" onclick="addToCart()">Add to Cart</button>
         </div>
     </div>
 
-    <!-- Cart (for demonstration purposes) -->
-    <div id="cart">
-        <h3>Cart:</h3>
-        <ul id="cartItems"></ul>
+    <!-- Cart modal (for full-screen cart view) -->
+    <div id="cart" class="modal">
+        <div id="cart-modal-content">
+            <span id="closeCart" class="close" onclick="closeCart()">&times;</span> <!-- Close cart 'X' button -->
+            <h3>Your Cart</h3>
+            <ul id="cartItems"></ul>
+            <!-- Confirm Order Button (Yellowish color) -->
+            <button id="confirmOrderButton" class="confirm-order-btn" onclick="confirmOrder()">Confirm Order</button>
+        </div>
+    </div>
+
+    <!-- Basket icon -->
+    <div id="cart-icon" onclick="viewCart()">
+        <img src="{% static 'menu3/basket.png' %}" alt="Cart">
+        <span id="cart-count">0</span> <!-- Display the count of items in the cart -->
     </div>
 
 </body>

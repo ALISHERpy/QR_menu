@@ -63,29 +63,29 @@ def menu3(request, uid=None):
         'restaurant':the_rest
     })
 
-# views.py
+
+# In views.py
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 import json
 
+@csrf_exempt
 def confirm_order(request):
-    print(f"Request Method: {request.method}")
-    print(f"Request Path: {request.path}")
-    print(f"Request Body: {request.body}")
-    
     if request.method == 'POST':
-        data = json.loads(request.body)
-        cart_items = data.get('items', [])
-        print("Cart Items:", cart_items)
-
-        # Process the order here
-        
-        return JsonResponse({'status': 'success', 'message': 'Order confirmed', 'items': cart_items})
+        try:
+            data = json.loads(request.body)
+            restaurant_uid = data.get('restaurant_uid')
+            items = data.get('items', [])
+            total = data.get('total')
+            print(data)
+            # Process the order (save to database, etc.)
+            # ...
+            
+            return JsonResponse({'status': 'success', 'message': 'Order confirmed'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
     
-    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
-
-
-
-
+    return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
 
 ####__________________________________________________
 

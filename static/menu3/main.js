@@ -1,6 +1,3 @@
-
-
-
 // Global cart array to store meals added to cart
 let cart = [];
 
@@ -112,43 +109,71 @@ function closeCart() {
 }
 
 // Add an event listener to the close button
-document.getElementById('closeCart').addEventListener('click', closeCart);
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('closeCart')) {
+        document.getElementById('closeCart').addEventListener('click', closeCart);
+    }
+});
 
-
+// Get CSRF token from the Django template
 function getCSRFToken() {
-    // Retrieve the CSRF token value from the meta tag
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').content;
-    return csrfToken;
+    // Get the CSRF token from the hidden input field created by {% csrf_token %}
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
 }
-// ##########_____________
-function confirmOrder() {
-    const cartItems = [
-        { title: "Мясной ассорти", quantity: 2, price: 180000 },
-        { title: "Фруктовое ассорти", quantity: 1, price: 190000 }
-    ];
 
-    fetch('/prod/confirm-order/', {
+// Function to confirm the order
+function confirmOrder() {
+    // Use the actual cart items instead of hard-coded values
+    const cartItems = cart.map(item => ({
+        title: item.title,
+        quantity: item.quantity,
+        price: item.price
+    }));
+
+    // Only proceed if there are items in the cart
+    if (cartItems.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+
+    // Get the current URL path to handle language prefixes
+    const currentPath = window.location.pathname;
+    // Extract language prefix if it exists (e.g., /en/, /ru/)
+    const langMatch = currentPath.match(/^\/([a-z]{2})\//);
+    const langPrefix = langMatch ? `/${langMatch[1]}` : '';
+    
+    // Use the language prefix in the URL
+    const confirmUrl = `${langPrefix}/prod/confirm-order/`;
+
+    fetch(confirmUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': getCSRFToken()  // Ensure CSRF token is sent in headers
+            'X-CSRFToken': getCSRFToken()
         },
-        body: JSON.stringify({ items: cartItems })  // Send the cart items in the request body
+        body: JSON.stringify({ items: cartItems })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server responded with status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
-        console.log(data);  // Handle the response from the server
+        console.log('Order confirmed:', data);
+        // Clear the cart after successful order
+        cart = [];
+        updateCartIcon();
+        closeCart();
+        alert('Your order has been confirmed!');
     })
     .catch(error => {
-        console.error('Error:', error);  // Handle errors
+        console.error('Error confirming order:', error);
+        alert('There was a problem confirming your order. Please try again.');
     });
 }
 
-
-
-
-
-// Function to get cart items from the cart array
+// Function to get cart items from the cart array (utility function)
 function getCartItems() {
     return cart.map(item => ({
         title: item.title,
@@ -157,4 +182,70 @@ function getCartItems() {
     }));
 }
 
+// Initialize event listeners when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Any additional initialization can go here
+    console.log('Menu system initialized');
+});
 
+const handleConfirmOrder = async () => {
+try {
+    const orderData = {
+    restaurant_uid: restaurant.uid,
+    items: basketItems.map(item => ({
+        meal_id: item.id,
+        quantity: item.quantity,
+        price: item.price
+    })),
+    total: basketItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+    };
+    
+    // Send order to Django backend
+    const response = await fetch('/api/order/confirm', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderData),
+    });
+    
+    if (!response.ok) {
+    throw new Error('Failed to submit order');
+    }
+    
+    // Clear basket after successful order
+    setBasketItems([]);
+    setBasketOpen(false);
+    
+    alert("Order confirmed! Thank you for your purchase.");
+} catch (error) {
+    console.error("Error confirming order:", error);
+    alert("There was an error processing your order. Please try again.");
+}
+};
+
+// In app/page.tsx useEffect
+useEffect(() => {
+const fetchData = async () => {
+    try {
+    setLoading(true);
+    // Get restaurant UID from URL or props
+    const uid = "your-restaurant-uid"; // Replace with actual UID or get from URL
+    
+    // Fetch data from your Django endpoint
+    const response = await fetch(`/api/menu/${uid}`);
+    const data = await response.json();
+    
+    setRestaurant(data.restaurant);
+    setCategories(data.categories);
+    setMeals(data.meals);
+    setActiveCategory(data.categories[0]?.name);
+    setLoading(false);
+    } catch (error) {
+    console.error("Error fetching data:", error);
+    setLoading(false);
+    }
+};
+
+fetchData();
+}, []);

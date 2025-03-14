@@ -1,7 +1,7 @@
 /* Styling for the Navbar and Meal Grid */
 .navbar {
     display: flex;
-    justify-content: flex-start; /* Align the categories to the left */
+    justify-content: center; /* Categories centered */
     background-color: #1b0d2c;
     padding: 10px;
     position: sticky;
@@ -17,8 +17,8 @@
     text-decoration: none;
     padding: 10px 20px;
     text-align: center;
-    margin: 0 5px; /* Add spacing between links */
-    background-color: #f2f2f2; /* Light background for each category */
+    margin: 0 5px;
+    background-color: #f2f2f2;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
@@ -41,27 +41,23 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
+    transition: transform 0.3s ease;
 }
 
+/* Image zoom effect */
 .meal-item img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.meal-item:hover img {
+    transform: scale(1.1);
 }
 
 .meal-name {
     font-weight: bold;
-}
-
-/* Optional: Additional styles for better visual appearance */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    font-size: 24px;
 }
 
 .meal-items {
@@ -74,50 +70,7 @@ h1 {
     margin: 5px 0;
 }
 
-/* Modal styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 9999; /* Ensure it appears above other elements */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    border-radius: 10px; /* Optional: Add rounded corners for the modal */
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.meal-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-}
-/* Basket icon style (fixed to the top-right corner) */
+/* Basket icon styling */
 #cart-icon {
     position: fixed;
     top: 50%;
@@ -127,13 +80,13 @@ h1 {
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-50%); /* Vertically center */
-    z-index: 100; /* Ensure it appears above other elements */
+    transform: translateY(-50%);
+    z-index: 100;
 }
 
 #cart-icon img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
 }
 
 #cart-count {
@@ -143,85 +96,13 @@ h1 {
     background-color: red;
     color: white;
     border-radius: 50%;
-    width: 20px;  /* Set fixed width */
-    height: 20px; /* Set fixed height */
+    width: 22px;
+    height: 22px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;  /* Adjust font size to fit inside */
-    font-weight: bold;
-    padding: 0;
-}
-
-/* Optional: Adjust the size of the cart count based on content (if you expect larger numbers) */
-#cart-count.large {
-    width: 25px;
-    height: 25px;
     font-size: 14px;
-}
-
-/* Cart modal styling */
-#cart {
-    display: none;
-    position: fixed;
-    z-index: 9998; /* Ensure it appears above other elements */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark background to overlay */
-    padding-top: 60px;
-    overflow-y: auto;
-}
-
-#cart-modal-content {
-    background-color: white;
-    margin: 0 auto;
-    padding: 30px;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-#cart h3 {
-    margin-top: 0;
-}
-
-#cartItems {
-    list-style-type: none;
-    padding: 0;
-}
-#cartItems div {
     font-weight: bold;
-    font-size: 1.2em;
-    margin-top: 20px;
-}
-
-
-#cartItems li {
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-#cartItems li span {
-    font-weight: bold;
-}
-
-/* Close button in the cart modal */
-#closeCart {
-    background-color: #f44336; /* Red close button */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: 16px;
-}
-
-#closeCart:hover {
-    background-color: #d32f2f;
 }
 
 /* Meal Quantity Buttons */
@@ -233,9 +114,8 @@ h1 {
 }
 
 .count-btn {
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    padding: 5px 15px;
+    border: none;
+    padding: 8px 15px;
     cursor: pointer;
     font-size: 18px;
     margin: 0 5px;
@@ -243,53 +123,20 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.count-btn:hover {
-    background-color: #ddd;
+.count-btn.minus {
+    background-color: #f44336; /* Red */
+    color: white;
 }
 
-#mealCount {
-    font-size: 18px;
-    font-weight: bold;
+.count-btn.minus:hover {
+    background-color: #d32f2f;
 }
 
-/* Optional: Add transition effects for smooth visibility toggling */
-.modal, #cart {
-    transition: all 0.3s ease-in-out;
+.count-btn.plus {
+    background-color: #28a745; /* Green */
+    color: white;
 }
 
-/* Styling for the confirm order button */
-.confirm-order-btn {
-    background-color: #fdd835; /* Yellowish color */
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-    border-radius: 5px;
-}
-
-.confirm-order-btn:hover {
-    background-color: #fbc02d; /* Darker yellow on hover */
-}
-
-#addToCartButton {
-    background-color: #28a745; /* Green background */
-    color: white; /* White text */
-    font-size: 16px; /* Bigger text for better readability */
-    padding: 12px 24px; /* More padding for a larger button */
-    border-radius: 8px; /* Rounded corners */
-    border: none; /* Remove default border */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
-    font-weight: bold; /* Bold text */
-}
-
-#addToCartButton:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: scale(1.05); /* Slightly increase size on hover */
-}
-
-#addToCartButton:focus {
-    outline: none; /* Remove default focus outline */
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Add focus shadow effect */
+.count-btn.plus:hover {
+    background-color: #218838;
 }

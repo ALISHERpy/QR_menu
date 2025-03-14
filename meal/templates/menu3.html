@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrfmiddlewaretoken" content="{{ csrf_token }}">
     <title>{{ restaurant.name }} Menu</title>
     <link rel="stylesheet" href="{% static 'menu3/main.css' %}">
     <script src="{% static 'menu3/main.js' %}" defer></script>
 </head>
 <body>
+    <!-- CSRF Token - This is the correct way to include it -->
+    {% csrf_token %}
 
     <!-- Navbar for categories -->
     <div class="navbar">
@@ -43,7 +44,7 @@
     <div id="mealModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <img id="mealImage" src="" alt="Meal Image" class="meal-image">
+            <img id="mealImage" src="/placeholder.svg" alt="Meal Image" class="meal-image">
             <h2 id="mealName"></h2>
             <p id="mealTitle"></p>
             <p id="mealDescription"></p>
