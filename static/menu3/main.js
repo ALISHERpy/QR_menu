@@ -2,18 +2,17 @@
 let cart = [];
 // Object to store individual meal counts
 let mealCounts = {};
-// Function to show meal details in the modal
-// Function to show meal details in the modal
+// Object to store individual meal counts
+
 function showMealDetails(title, price, description, imageUrl) {
     console.log("View button clicked:", title); // Debugging log
 
-    // Ensure modal elements exist before updating
     let modal = document.getElementById("mealModal");
     let mealTitle = document.getElementById("mealTitle");
     let mealPrice = document.getElementById("mealPrice");
     let mealDescription = document.getElementById("mealDescription");
     let mealImage = document.getElementById("mealImage");
-    let countElement = document.getElementById("mealCount"); // Select meal count element
+    let countElement = document.getElementById("mealCount");
 
     if (!modal || !mealTitle || !mealPrice || !mealDescription || !mealImage || !countElement) {
         console.error("Modal elements missing!");
@@ -26,19 +25,14 @@ function showMealDetails(title, price, description, imageUrl) {
     mealDescription.textContent = description.replace(/&quot;/g, '"'); // Fix escaping issues
     mealImage.src = imageUrl;
 
-    // Reset the counter to 0 when opening a new meal detail
-    countElement.textContent = "0";
+    // Restore previous count if available, otherwise set to 0
+    countElement.textContent = mealCounts[title] !== undefined ? mealCounts[title] : "0";
 
     // Show modal
     modal.style.display = "block";
 
     // Store the selected meal for later adding to cart
     window.selectedMeal = { title, price };
-}
-
-// Function to close meal details modal
-function closeModal() {
-    document.getElementById("mealModal").style.display = "none";
 }
 
 // Function to increase meal count
@@ -67,6 +61,11 @@ function decreaseCount() {
             mealCounts[window.selectedMeal.title] = count;
         }
     }
+}
+
+// Function to close meal details modal
+function closeModal() {
+    document.getElementById("mealModal").style.display = "none";
 }
 
 // Function to add meal to cart
