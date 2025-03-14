@@ -74,26 +74,27 @@ function addToCart() {
     if (count > 0) {
         let meal = window.selectedMeal;
         let price = parseFloat(meal.price);
+        let imageUrl = document.getElementById('mealImage').src; // Get meal image URL
 
         // Check if the meal is already in the cart
         let existingMeal = cart.find(item => item.title === meal.title);
         if (existingMeal) {
-            existingMeal.quantity = count; // Update quantity instead of adding a duplicate entry
+            existingMeal.quantity = count; // Update quantity instead of adding duplicate
         } else {
             cart.push({
                 title: meal.title,
                 price: price,
-                quantity: count
+                quantity: count,
+                imageUrl: imageUrl // Save image in cart
             });
         }
 
-        // Save the count for this meal so it persists when re-selected
         mealCounts[meal.title] = count;
-
         updateCartIcon();
         closeModal();
     }
 }
+
 
 // Function to update cart icon count
 function updateCartIcon() {
@@ -101,7 +102,6 @@ function updateCartIcon() {
     document.getElementById('cart-count').textContent = cartCount;
 }
 
-// Function to view cart modal
 function viewCart() {
     document.getElementById('cart-icon').style.display = 'none';
     document.getElementById('cart').style.display = 'block';
@@ -111,12 +111,26 @@ function viewCart() {
 
     let totalPrice = 0;
 
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         let itemTotal = item.price * item.quantity;
         totalPrice += itemTotal;
 
         let listItem = document.createElement('li');
-        listItem.innerHTML = `<strong>${item.title}</strong> (x${item.quantity}) - ${itemTotal} sum`;
+        listItem.style.display = "flex";
+        listItem.style.alignItems = "center";
+        listItem.style.justifyContent = "space-between";
+        listItem.style.marginBottom = "10px";
+
+        listItem.innerHTML = `
+            <img src="${item.imageUrl}" alt="${item.title}" style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover;">
+            <strong>${item.title}</strong> 
+            <div style="display: flex; align-items: center;">
+                <button class="count-btn" onclick="updateCartItem(${index}, -1)">-</button>
+                <span style="margin: 0 10px; font-weight: bold;">${item.quantity}</span>
+                <button class="count-btn" onclick="updateCartItem(${index}, 1)">+</button>
+            </div>
+            <span>${itemTotal} sum</span>
+        `;
         cartItemsElement.appendChild(listItem);
     });
 
@@ -125,6 +139,18 @@ function viewCart() {
     totalPriceElement.innerHTML = `<strong>Total: </strong>${totalPrice} sum`;
     cartItemsElement.appendChild(totalPriceElement);
 }
+
+function updateCartItem(index, change) {
+    cart[index].quantity += change;
+    
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1); // Remove item if quantity is zero
+    }
+    
+    updateCartIcon();
+    viewCart(); // Refresh cart modal
+}
+
 
 // Function to close the cart modal
 function closeCart() {
