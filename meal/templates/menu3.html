@@ -2,80 +2,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="csrfmiddlewaretoken" content="{{ csrf_token }}">
     <title>{{ restaurant.name }} Menu</title>
     <link rel="stylesheet" href="{% static 'menu3/main.css' %}">
     <script src="{% static 'menu3/main.js' %}" defer></script>
 </head>
 <body>
-    <!-- CSRF Token - This is the correct way to include it -->
-    {% csrf_token %}
 
-    <!-- Navbar for categories -->
+    <!-- Navbar for Categories -->
     <div class="navbar">
         {% for category in categories %}
             <a href="#{{ category.name }}">{{ category.name }}</a>
         {% endfor %}
     </div>
 
-    <!-- Meals Display -->
-    {% for category_name, meal_list in meals.items %}
-        <div class="meal-section" id="{{ category_name }}">
-            <h1>{{ category_name }}</h1>
-            {% if meal_list %}
-                <div class="meal-items">
-                    {% for meal in meal_list %}
-                        <div class="meal-item" onclick="showMealDetails('{{ meal.name }}', '{{ meal.title }}', '{{ meal.price }}', '{{ meal.description|escapejs }}', '{{ meal.image.url }}')">
-                            <img src="{{ meal.image.url }}" alt="{{ meal.name }}">
-                            <div class="meal-name">{{ meal.name }}</div>
-                            <p>{{ meal.title }}</p>
-                            <p>Price: {{ meal.price }} sum</p>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p>No meals available for this category.</p>
-            {% endif %}
-        </div>
-    {% endfor %}
+    <!-- Meal Container -->
+    <div class="meal-container">
+        {% for category_name, meal_list in meals.items %}
+            <div class="category-section" id="{{ category_name }}">
+                <h2 style="text-align: center;" class="category-title">{{ category_name }}</h2>
 
-    <!-- Modal for meal details -->
-    <div id="mealModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <img id="mealImage" src="/placeholder.svg" alt="Meal Image" class="meal-image">
-            <h2 id="mealName"></h2>
-            <p id="mealTitle"></p>
-            <p id="mealDescription"></p>
-            <p id="mealPrice"></p>
+                {% if meal_list %}
+                    <div class="meal-grid">
+                        {% for meal in meal_list %}
+                            <div class="meal-card">
+                        <img src="{{ meal.image.url }}" alt="{{ meal.title }}" class="meal-image">
+                                <div class="meal-info">
+                                    <h3 class="meal-title">{{ meal.title }}</h3>
+                                    <p class="meal-price">{{ meal.price }} sum</p>
 
-            <!-- Quantity controls inside the modal -->
-            <div class="meal-count">
-                <button class="count-btn" onclick="decreaseCount()">-</button>
-                <span id="mealCount">0</span>
-                <button class="count-btn" onclick="increaseCount()">+</button>
+                                    <button class="meal-detail-btn" 
+    onclick='showMealDetails(
+        "{{ meal.title|escapejs }}", 
+        "{{ meal.price }}", 
+        "{{ meal.description|escapejs }}", 
+        "{{ meal.image.url }}"
+    )'>
+    View
+</button>
+
+                                
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="no-meals">No meals available for this category.</p>
+                {% endif %}
             </div>
-
-            <button id="addToCartButton" onclick="addToCart()">Add to Cart</button>
-        </div>
+        {% endfor %}
     </div>
 
-    <!-- Cart modal (for full-screen cart view) -->
+
+    <!-- Modal for Meal Details -->
+<div id="mealModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-body">
+            <!-- Meal Image -->
+            <div class="modal-image-container">
+                <img id="mealImage" src="" alt="Meal Image" class="meal-modal-image">
+            </div>
+            <!-- Meal Info -->
+            <div class="modal-info">
+                <h2 id="mealTitle"></h2>
+                <p id="mealDescription" class="meal-description"></p>
+                <p class="meal-price"><strong id="mealPrice"></strong> </p>
+
+                <!-- Quantity Controls with Add to Cart Button -->
+                <div class="meal-quantity">
+                    <button class="count-btn" onclick="decreaseCount()">-</button>
+                    <span id="mealCount">1</span>
+                    <button class="count-btn" onclick="increaseCount()">+</button>
+                    <button id="addToCartButton" class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Cart Modal -->
     <div id="cart" class="modal">
         <div id="cart-modal-content">
-            <span id="closeCart" class="close" onclick="closeCart()">&times;</span> <!-- Close cart 'X' button -->
+            <span id="closeCart" class="close" onclick="closeCart()">&times;</span>
             <h3>Your Cart</h3>
             <ul id="cartItems"></ul>
-            <!-- Confirm Order Button (Yellowish color) -->
+            <div class="room-number-input">
+                <label for="roomNumberInput">Room Number:</label>
+                <input type="text" id="roomNumberInput" placeholder="Enter your room number">
+            </div>
             <button id="confirmOrderButton" class="confirm-order-btn" onclick="confirmOrder()">Confirm Order</button>
         </div>
     </div>
 
-    <!-- Basket icon -->
+    <!-- Basket Icon -->
     <div id="cart-icon" onclick="viewCart()">
         <img src="{% static 'menu3/basket.png' %}" alt="Cart">
-        <span id="cart-count">0</span> <!-- Display the count of items in the cart -->
+        <span id="cart-count">0</span>
     </div>
 
 </body>

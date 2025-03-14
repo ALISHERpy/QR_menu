@@ -40,7 +40,13 @@ class Meal(models.Model):
     price = models.CharField(max_length=32, default='0')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='meals')
     image = models.ImageField(upload_to='meals', blank=True, null=True)
-
+    # image = ProcessedImageField(
+    #     upload_to='meals',
+    #     processors=[ResizeToFill(500, 500)],  # Resize to 500x500
+    #     format='JPEG',
+    #     options={'quality': 80}
+    # )  
+    # #####image saqlash vaqti har bir restaran uchun papka ochib saqlash kerak
     is_vegetarian = models.BooleanField(default=False)
     is_available = models.BooleanField(default=True)
 
