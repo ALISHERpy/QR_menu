@@ -1,98 +1,136 @@
-
-
-
 // Global cart array to store meals added to cart
 let cart = [];
+// Object to store individual meal counts
+let mealCounts = {};
+// Object to store individual meal counts
 
-// Show modal with meal details
-function showMealDetails(name, title, price, description, imageUrl) {
-    document.getElementById("mealName").textContent = name;
-    document.getElementById("mealTitle").textContent = title;
-    document.getElementById("mealPrice").textContent = "Price: " + price + " sum";
-    document.getElementById("mealDescription").textContent = description;
-    document.getElementById("mealImage").src = imageUrl;
-    document.getElementById("mealCount").textContent = "0"; // Reset count when opening modal
+function showMealDetails(title, price, description, imageUrl) {
+    console.log("View button clicked:", title); // Debugging log
 
-    // Open modal
-    document.getElementById("mealModal").style.display = "block";
-    
+    let modal = document.getElementById("mealModal");
+    let mealTitle = document.getElementById("mealTitle");
+    let mealPrice = document.getElementById("mealPrice");
+    let mealDescription = document.getElementById("mealDescription");
+    let mealImage = document.getElementById("mealImage");
+    let countElement = document.getElementById("mealCount");
+
+    if (!modal || !mealTitle || !mealPrice || !mealDescription || !mealImage || !countElement) {
+        console.error("Modal elements missing!");
+        return;
+    }
+
+    // Set modal content
+    mealTitle.textContent = title;
+    mealPrice.textContent = "Price: " + price + " sum";
+    mealDescription.textContent = description.replace(/&quot;/g, '"'); // Fix escaping issues
+    mealImage.src = imageUrl;
+
+    // Restore previous count if available, otherwise set to 0
+    countElement.textContent = mealCounts[title] !== undefined ? mealCounts[title] : "0";
+
+    // Show modal
+    modal.style.display = "block";
+
     // Store the selected meal for later adding to cart
-    window.selectedMeal = { name, title, price }; // Include title for later use in cart
+    window.selectedMeal = { title, price };
 }
 
-// Close modal
-function closeModal() {
-    document.getElementById("mealModal").style.display = "none";
-}
-
-// Increase meal count in the modal
+// Function to increase meal count
 function increaseCount() {
     let countElement = document.getElementById('mealCount');
     let count = parseInt(countElement.textContent);
-    countElement.textContent = count + 1;
+    count += 1;
+    countElement.textContent = count;
+
+    // Store the count for the currently selected meal
+    if (window.selectedMeal) {
+        mealCounts[window.selectedMeal.title] = count;
+    }
 }
 
-// Decrease meal count in the modal
+// Function to decrease meal count
 function decreaseCount() {
     let countElement = document.getElementById('mealCount');
     let count = parseInt(countElement.textContent);
     if (count > 0) {
-        countElement.textContent = count - 1;
+        count -= 1;
+        countElement.textContent = count;
+
+        // Store the count for the currently selected meal
+        if (window.selectedMeal) {
+            mealCounts[window.selectedMeal.title] = count;
+        }
     }
 }
 
-// Add the selected meal to the cart
+// Function to close meal details modal
+function closeModal() {
+    document.getElementById("mealModal").style.display = "none";
+}
+
+// Function to add meal to cart
 function addToCart() {
     let count = parseInt(document.getElementById('mealCount').textContent);
     if (count > 0) {
         let meal = window.selectedMeal;
-        meal.quantity = count;
+        let price = parseFloat(meal.price);
+        let imageUrl = document.getElementById('mealImage').src; // Get meal image URL
 
-        // Get the meal title and price
-        let title = document.getElementById("mealTitle").textContent;
-        let price = document.getElementById("mealPrice").textContent.replace('Price: ', '').replace(' sum', '');
+        // Check if the meal is already in the cart
+        let existingMeal = cart.find(item => item.title === meal.title);
+        if (existingMeal) {
+            existingMeal.quantity = count; // Update quantity instead of adding duplicate
+        } else {
+            cart.push({
+                title: meal.title,
+                price: price,
+                quantity: count,
+                imageUrl: imageUrl // Save image in cart
+            });
+        }
 
-        // Add the full meal object to the cart
-        cart.push({
-            name: meal.name,
-            title: title,
-            price: parseFloat(price),  // Ensure price is a number
-            quantity: meal.quantity
-        });
-
+        mealCounts[meal.title] = count;
         updateCartIcon();
         closeModal();
     }
 }
 
-// Update the cart icon with the total count of items
+
+// Function to update cart icon count
 function updateCartIcon() {
     let cartCount = cart.reduce((total, meal) => total + meal.quantity, 0);
     document.getElementById('cart-count').textContent = cartCount;
 }
 
-// Show cart modal with cart items
 function viewCart() {
-    // Hide the cart icon when the modal is open
     document.getElementById('cart-icon').style.display = 'none';
-
-    // Display the cart modal
     document.getElementById('cart').style.display = 'block';
 
-    // Get the cartItems element and clear any previous content
     let cartItemsElement = document.getElementById('cartItems');
     cartItemsElement.innerHTML = '';
 
-    // Initialize total price
     let totalPrice = 0;
 
-    // Add each item in the cart to the modal
-    cart.forEach(item => {
-        let itemTotal = item.price * item.quantity;  // Calculate the total price for the item
-        totalPrice += itemTotal;  // Add item total to the overall total
+    cart.forEach((item, index) => {
+        let itemTotal = item.price * item.quantity;
+        totalPrice += itemTotal;
 
         let listItem = document.createElement('li');
-        listItem.innerHTML = `<strong>${item.title}</strong> (x${item.quantity}) - ${itemTotal} sum`;
+        listItem.style.display = "flex";
+        listItem.style.alignItems = "center";
+        listItem.style.justifyContent = "space-between";
+        listItem.style.marginBottom = "10px";
+
+        listItem.innerHTML = `
+            <img src="${item.imageUrl}" alt="${item.title}" style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover;">
+            <strong>${item.title}</strong> 
+            <div style="display: flex; align-items: center;">
+                <button class="count-btn" onclick="updateCartItem(${index}, -1)">-</button>
+                <span style="margin: 0 10px; font-weight: bold;">${item.quantity}</span>
+                <button class="count-btn" onclick="updateCartItem(${index}, 1)">+</button>
+            </div>
+            <span>${itemTotal} sum</span>
+        `;
         cartItemsElement.appendChild(listItem);
     });
 
@@ -102,59 +140,88 @@ function viewCart() {
     cartItemsElement.appendChild(totalPriceElement);
 }
 
-// Close the cart modal
-function closeCart() {
-    // Hide the cart modal
-    document.getElementById('cart').style.display = 'none';
+function updateCartItem(index, change) {
+    cart[index].quantity += change;
+    
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1); // Remove item if quantity is zero
+    }
+    
+    updateCartIcon();
+    viewCart(); // Refresh cart modal
+}
 
-    // Show the cart icon again
+
+// Function to close the cart modal
+function closeCart() {
+    document.getElementById('cart').style.display = 'none';
     document.getElementById('cart-icon').style.display = 'block';
 }
 
-// Add an event listener to the close button
-document.getElementById('closeCart').addEventListener('click', closeCart);
-
-
+// Function to get CSRF token for Django security
 function getCSRFToken() {
-    // Retrieve the CSRF token value from the meta tag
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').content;
-    return csrfToken;
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
 }
-// ##########_____________
+
+// Function to confirm the order
 function confirmOrder() {
-    const cartItems = [
-        { title: "Мясной ассорти", quantity: 2, price: 180000 },
-        { title: "Фруктовое ассорти", quantity: 1, price: 190000 }
-    ];
+    const roomNumber = document.getElementById('roomNumberInput').value.trim();
 
-    fetch('/prod/confirm-order/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': getCSRFToken()  // Ensure CSRF token is sent in headers
-        },
-        body: JSON.stringify({ items: cartItems })  // Send the cart items in the request body
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);  // Handle the response from the server
-    })
-    .catch(error => {
-        console.error('Error:', error);  // Handle errors
-    });
-}
+    // Validate room number (should not be empty)
+    if (roomNumber === '') {
+        alert('Please enter your room number before confirming the order.');
+        return;
+    }
 
-
-
-
-
-// Function to get cart items from the cart array
-function getCartItems() {
-    return cart.map(item => ({
+    const cartItems = cart.map(item => ({
         title: item.title,
         quantity: item.quantity,
         price: item.price
     }));
+
+    if (cartItems.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+
+    // Get the current URL path to handle language prefixes
+    const currentPath = window.location.pathname;
+    const langMatch = currentPath.match(/^\/([a-z]{2})\//);
+    const langPrefix = langMatch ? `/${langMatch[1]}` : '';
+
+    // Backend API endpoint for confirming order
+    const confirmUrl = `${langPrefix}/prod/confirm-order/`;
+
+    fetch(confirmUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken()
+        },
+        body: JSON.stringify({ items: cartItems, room_number: roomNumber })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server responded with status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Order confirmed:', data);
+        cart = []; // Clear cart after successful order
+        updateCartIcon();
+        closeCart();
+        alert('Your order has been confirmed!');
+    })
+    .catch(error => {
+        console.error('Error confirming order:', error);
+        alert('There was a problem confirming your order. Please try again.');
+    });
 }
 
-
+// Add event listener for closing the cart
+document.addEventListener('DOMContentLoaded', function () {
+    if (document.getElementById('closeCart')) {
+        document.getElementById('closeCart').addEventListener('click', closeCart);
+    }
+});

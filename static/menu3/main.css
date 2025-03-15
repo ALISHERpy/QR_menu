@@ -1,24 +1,31 @@
-/* Styling for the Navbar and Meal Grid */
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
 .navbar {
     display: flex;
-    justify-content: flex-start; /* Align the categories to the left */
+    justify-content: flex-start;
     background-color: #1b0d2c;
     padding: 10px;
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 2px -2px rgb(50, 218, 50);
-    overflow-x: auto; /* Enable horizontal scrolling */
-    white-space: nowrap; /* Prevent links from wrapping */
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .navbar a {
-    color: rgb(5, 5, 5);
+    color: black;
     text-decoration: none;
     padding: 10px 20px;
     text-align: center;
-    margin: 0 5px; /* Add spacing between links */
-    background-color: #f2f2f2; /* Light background for each category */
+    margin: 0 5px;
+    background-color: #f2f2f2;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
@@ -28,107 +35,150 @@
     color: black;
 }
 
-.meal-section {
+/* Meal Container */
+.meal-container {
     padding: 20px;
 }
 
-.meal-item {
-    display: inline-block;
-    width: 30%;
-    box-sizing: border-box;
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Grid Layout for Meals */
+.meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Meal Card */
+.meal-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     text-align: center;
+    transition: transform 0.3s ease-in-out;
+    padding-bottom: 10px;
 }
 
-.meal-item img {
-    max-width: 100%;
+.meal-card:hover {
+    transform: scale(1.05);
+}
+
+/* Meal Image */
+.meal-image-container {
+    position: relative;
+}
+
+/* Meal Image Hover Effect */
+.meal-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out; /* Smooth scaling */
+}
+/* Meal Detail Modal Image */
+.meal-modal-image {
+    width: 100%;
+    max-width: 300px; /* Limit the maximum width */
     height: auto;
-    border-radius: 5px;
+    display: block;
+    margin: 0 auto; /* Center the image */
 }
 
-.meal-name {
+.meal-card:hover .meal-image {
+    transform: scale(1.1); /* Scale image only */
+}
+
+/* Favorite Button */
+.favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn:hover {
+    background: #ff4444;
+    color: white;
+}
+
+/* Meal Info */
+.meal-info {
+    padding: 15px;
+}
+
+.meal-title {
+    font-size: 18px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
-/* Optional: Additional styles for better visual appearance */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+.meal-price {
+    font-size: 16px;
+    color: #28a745;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-h1 {
-    font-size: 24px;
+/* Meal Detail Button */
+.meal-detail-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.meal-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.meal-detail-btn:hover {
+    background: #218838;
+    transform: scale(1.05);
 }
 
-.meal-item p {
-    margin: 5px 0;
-}
-
-/* Modal styles */
+/* Modal for Meal Details */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
-    z-index: 9999; /* Ensure it appears above other elements */
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
 }
 
-.modal-content {
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    border-radius: 10px; /* Optional: Add rounded corners for the modal */
-}
 
 .close {
-    color: #aaa;
+    color: #fa0101;
     float: right;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover {
     color: black;
-    text-decoration: none;
     cursor: pointer;
 }
 
-.meal-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-}
-/* Basket icon style (fixed to the top-right corner) */
+/* Basket Icon */
 #cart-icon {
     position: fixed;
-    top: 50%;
+    bottom: 20px;
     right: 20px;
-    background-color: #f4c542;
+    background: #28a745;
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-50%); /* Vertically center */
-    z-index: 100; /* Ensure it appears above other elements */
+    z-index: 100;
 }
 
 #cart-icon img {
@@ -140,42 +190,34 @@ h1 {
     position: absolute;
     top: -5px;
     right: -5px;
-    background-color: red;
+    background: red;
     color: white;
     border-radius: 50%;
-    width: 20px;  /* Set fixed width */
-    height: 20px; /* Set fixed height */
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;  /* Adjust font size to fit inside */
-    font-weight: bold;
-    padding: 0;
 }
 
-/* Optional: Adjust the size of the cart count based on content (if you expect larger numbers) */
-#cart-count.large {
-    width: 25px;
-    height: 25px;
-    font-size: 14px;
-}
-
-/* Cart modal styling */
+/* Cart Modal */
 #cart {
     display: none;
     position: fixed;
-    z-index: 9998; /* Ensure it appears above other elements */
+    z-index: 9998;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark background to overlay */
+    background-color: rgba(0, 0, 0, 0.5);
     padding-top: 60px;
     overflow-y: auto;
 }
 
 #cart-modal-content {
-    background-color: white;
+    background: white;
     margin: 0 auto;
     padding: 30px;
     width: 80%;
@@ -184,33 +226,25 @@ h1 {
     text-align: center;
 }
 
-#cart h3 {
-    margin-top: 0;
-}
-
 #cartItems {
     list-style-type: none;
     padding: 0;
 }
-#cartItems div {
-    font-weight: bold;
-    font-size: 1.2em;
-    margin-top: 20px;
-}
-
 
 #cartItems li {
     margin-bottom: 10px;
     font-size: 18px;
 }
 
-#cartItems li span {
+#cartItems div {
     font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 20px;
 }
 
 /* Close button in the cart modal */
 #closeCart {
-    background-color: #f44336; /* Red close button */
+    background: #f44336;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -221,7 +255,7 @@ h1 {
 }
 
 #closeCart:hover {
-    background-color: #d32f2f;
+    background: #d32f2f;
 }
 
 /* Meal Quantity Buttons */
@@ -233,7 +267,7 @@ h1 {
 }
 
 .count-btn {
-    background-color: #f2f2f2;
+    background: #f2f2f2;
     border: 1px solid #ccc;
     padding: 5px 15px;
     cursor: pointer;
@@ -244,7 +278,7 @@ h1 {
 }
 
 .count-btn:hover {
-    background-color: #ddd;
+    background: #ddd;
 }
 
 #mealCount {
@@ -252,14 +286,9 @@ h1 {
     font-weight: bold;
 }
 
-/* Optional: Add transition effects for smooth visibility toggling */
-.modal, #cart {
-    transition: all 0.3s ease-in-out;
-}
-
-/* Styling for the confirm order button */
+/* Confirm Order Button */
 .confirm-order-btn {
-    background-color: #fdd835; /* Yellowish color */
+    background: #fdd835;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -269,27 +298,127 @@ h1 {
 }
 
 .confirm-order-btn:hover {
-    background-color: #fbc02d; /* Darker yellow on hover */
+    background: #fbc02d;
 }
 
+/* Add to Cart Button */
 #addToCartButton {
-    background-color: #28a745; /* Green background */
-    color: white; /* White text */
-    font-size: 16px; /* Bigger text for better readability */
-    padding: 12px 24px; /* More padding for a larger button */
-    border-radius: 8px; /* Rounded corners */
-    border: none; /* Remove default border */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
-    font-weight: bold; /* Bold text */
+    background: #28a745;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
 }
 
 #addToCartButton:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: scale(1.05); /* Slightly increase size on hover */
+    background: #218838;
+    transform: scale(1.05);
+}
+/* Meal Modal */
+.modal-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    max-width: 700px;
+    width: 90%;
+    border-radius: 15px;
+    background: white;
+    flex-direction: column;
 }
 
-#addToCartButton:focus {
-    outline: none; /* Remove default focus outline */
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Add focus shadow effect */
+/* Modal Layout */
+.modal-body {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
 }
+
+/* Meal Image */
+.modal-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.meal-modal-image {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+/* Meal Info Section */
+.modal-info {
+    flex: 1;
+    text-align: left;
+}
+
+/* Meal Title */
+#mealTitle {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Meal Description */
+.meal-description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* Meal Price */
+.meal-price {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* Quantity Controls & Add to Cart in One Row */
+.meal-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Count Buttons */
+.count-btn {
+    background: white;
+    border: 1px solid #ddd;
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.count-btn:hover {
+    background: #f2f2f2;
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background: #218838;
+}
+

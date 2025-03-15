@@ -2,12 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="csrfmiddlewaretoken" content="{{ csrf_token }}">
     <title>{{ restaurant.name }} Menu</title>
-    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="{% static 'menu3/main.css' %}">
-    <!-- Link to the external JS file -->
     <script src="{% static 'menu3/main.js' %}" defer></script>
 </head>
 <body>
@@ -22,14 +21,13 @@
     <!-- Meals Display -->
     {% for category_name, meal_list in meals.items %}
         <div class="meal-section" id="{{ category_name }}">
-            <h1>{{ category_name }}</h1>
+            <h1 style="text-align: center;">{{ category_name }}</h1>
             {% if meal_list %}
                 <div class="meal-items">
                     {% for meal in meal_list %}
-                        <div class="meal-item" onclick="showMealDetails('{{ meal.name }}', '{{ meal.title }}', '{{ meal.price }}', '{{ meal.description|escapejs }}', '{{ meal.image.url }}')">
-                            <img src="{{ meal.image.url }}" alt="{{ meal.name }}">
-                            <div class="meal-name">{{ meal.name }}</div>
-                            <p>{{ meal.title }}</p>
+                        <div class="meal-item" onclick="showMealDetails('{{ meal.title }}', '{{ meal.price }}', '{{ meal.description|escapejs }}', '{{ meal.image.url }}')">
+                            <img src="{{ meal.image.url }}" alt="{{ meal.title }}">
+                            <div class="meal-title">{{ meal.title }}</div>
                             <p>Price: {{ meal.price }} sum</p>
                         </div>
                     {% endfor %}
@@ -45,18 +43,44 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <img id="mealImage" src="" alt="Meal Image" class="meal-image">
-            <h2 id="mealName"></h2>
-            <p id="mealTitle"></p>
+            <h2 id="mealTitle"></h2>
             <p id="mealDescription"></p>
             <p id="mealPrice"></p>
+
+            
+            <!-- Quantity controls inside the modal -->
+            <div class="meal-count">
+                <button class="count-btn" onclick="decreaseCount()">-</button>
+                <span id="mealCount">0</span>
+                <button class="count-btn" onclick="increaseCount()">+</button>
+            </div>
+
             <button id="addToCartButton" onclick="addToCart()">Add to Cart</button>
         </div>
     </div>
 
-    <!-- Cart (for demonstration purposes) -->
-    <div id="cart">
-        <h3>Cart:</h3>
-        <ul id="cartItems"></ul>
+    <!-- Cart modal (for full-screen cart view) -->
+    <div id="cart" class="modal">
+        <div id="cart-modal-content">
+            <span id="closeCart" class="close" onclick="closeCart()">&times;</span> 
+            <h3>Your Cart</h3>
+            <ul id="cartItems"></ul>
+
+            <!-- Room Number Input -->
+            <div class="room-number-input">
+                <label for="roomNumberInput">Room Number:</label>
+                <input type="text" id="roomNumberInput" placeholder="Enter your room number">
+            </div>
+
+            <!-- Confirm Order Button -->
+            <button id="confirmOrderButton" class="confirm-order-btn" onclick="confirmOrder()">Confirm Order</button>
+        </div>
+    </div>
+
+    <!-- Basket icon -->
+    <div id="cart-icon" onclick="viewCart()">
+        <img src="{% static 'menu3/basket.png' %}" alt="Cart">
+        <span id="cart-count">0</span>
     </div>
 
 </body>
